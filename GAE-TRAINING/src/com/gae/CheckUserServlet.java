@@ -1,4 +1,4 @@
-package root;
+package com.gae;
 
 import java.io.IOException;
 import java.util.HashMap;
@@ -33,7 +33,7 @@ public class CheckUserServlet extends HttpServlet {
 	protected void doPost(HttpServletRequest req, HttpServletResponse resp)
 			throws ServletException, IOException {
 	
-		// Recupération du service Datastore
+		// Recupï¿½ration du service Datastore
 		DatastoreService datastore = DatastoreServiceFactory.getDatastoreService();
 		
 		
@@ -43,23 +43,23 @@ public class CheckUserServlet extends HttpServlet {
 	    props.put(GCacheFactory.EXPIRATION_DELTA, 3600);
 	    props.put(MemcacheService.SetPolicy.ADD_ONLY_IF_NOT_PRESENT, true);
 	    try {
-	      // Récupération du Cache
+	      // Rï¿½cupï¿½ration du Cache
 	        CacheFactory cacheFactory = CacheManager.getInstance().getCacheFactory();
-	        // création/récupération du cache suivant des propriétés spécifiques
+	        // crï¿½ation/rï¿½cupï¿½ration du cache suivant des propriï¿½tï¿½s spï¿½cifiques
 	        cache = cacheFactory.createCache(props);
-	        // Si aucune propriété n'est spécifiée, 
-	        //créer/récupérer un cache comme ci-dessous
+	        // Si aucune propriï¿½tï¿½ n'est spï¿½cifiï¿½e, 
+	        //crï¿½er/rï¿½cupï¿½rer un cache comme ci-dessous
 	        //cache = cacheFactory.createCache(Collections.emptyMap());
 	     } catch (CacheException e) {
-	         // Traitement en cas d'erreur sur la récupération/configuration du cache
+	         // Traitement en cas d'erreur sur la rï¿½cupï¿½ration/configuration du cache
 	     }
 
 		
-		// Utilisation Query afin de rassembler les éléments a appeler/filter
+		// Utilisation Query afin de rassembler les ï¿½lï¿½ments a appeler/filter
 		Query q = new Query("User");
 		q.addFilter("login", Query.FilterOperator.EQUAL, req.getParameter("login"));
 
-		// Récupération du résultat de la requète à l’aide de PreparedQuery 
+		// Rï¿½cupï¿½ration du rï¿½sultat de la requï¿½te ï¿½ lï¿½aide de PreparedQuery 
 		PreparedQuery pq = datastore.prepare(q);
 		
 		String pwdBase="";
