@@ -23,7 +23,7 @@ public class AddWelcomeServlet extends HttpServlet{
 		
 		DatastoreService datastore = DatastoreServiceFactory.getDatastoreService();
 		Entity msgW = new Entity(WELCOME_MSG_ENTITY_KEY);
-		msgW.setProperty(WELCOME_MSG_MSG_ENTITY_PROPERTY, "COUCOU CEST NOUS");
+		msgW.setProperty(WELCOME_MSG_MSG_ENTITY_PROPERTY, "Strong health, Big muscles, Nice shape... ARE YOU READY TO GET IT ??");
 
 		datastore.put(msgW);
 	}
