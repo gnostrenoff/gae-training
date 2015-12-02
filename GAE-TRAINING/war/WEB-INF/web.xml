@@ -15,6 +15,16 @@ http://java.sun.com/xml/ns/javaee/web-app_2_5.xsd"
 		<url-pattern>/addWelcome</url-pattern>
 	</servlet-mapping>
 
+	<servlet>
+		<servlet-name>welcome</servlet-name>
+		<servlet-class>com.gae.WelcomeServlet</servlet-class>
+	</servlet>
+
+	<servlet-mapping>
+		<servlet-name>welcome</servlet-name>
+		<url-pattern>/welcome</url-pattern>
+	</servlet-mapping>
+
 
 	<servlet>
 		<servlet-name>CheckUser</servlet-name>
