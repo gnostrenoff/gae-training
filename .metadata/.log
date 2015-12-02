@@ -11617,3 +11617,6 @@ org.eclipse.core.runtime.CoreException: SDK directory '/Users/guillaumenostrenof
 	at org.eclipse.equinox.launcher.Main.main(Main.java:1438)
 !SUBENTRY 1 com.google.appengine.eclipse.core 4 0 2015-12-02 08:44:17.643
 !MESSAGE SDK directory '/Users/guillaumenostrenoff/eclipse/plugins/com.google.appengine.eclipse.sdkbundle_1.9.25/appengine-java-sdk-1.9.25' does not exist
+
+!ENTRY org.eclipse.wst.common.project.facet.core 4 0 2015-12-02 08:56:07.329
+!MESSAGE Project facet grails.app has not been defined. It is used in plugin com.vmware.vfabric.ide.eclipse.tcserver.core.
