@@ -1,0 +1,11 @@
+#Wed Dec 02 08:22:44 CET 2015
+vl=How many times the 'Finish' button pressed during the day
+l=Wizard class name
+ct=jbt
+d=1449040964398
+c=0
+cmp=usage
+a=finishWizard
+cl=com.google.gdt.eclipse.suite.wizards.NewWebAppProjectWizard
+v=2.0.2
+s=1

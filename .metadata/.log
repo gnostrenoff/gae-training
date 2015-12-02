@@ -1,0 +1,19 @@
+!SESSION 2015-12-02 08:19:59.028 -----------------------------------------------
+eclipse.buildId=4.4.2.M20150204-1700
+java.version=1.7.0_79
+java.vendor=Oracle Corporation
+BootLoader constants: OS=macosx, ARCH=x86_64, WS=cocoa, NL=fr_FR
+Framework arguments:  -product org.eclipse.epp.package.jee.product -keyring /Users/guillaumenostrenoff/.eclipse_keyring -showlocation
+Command-line arguments:  -os macosx -ws cocoa -arch x86_64 -product org.eclipse.epp.package.jee.product -keyring /Users/guillaumenostrenoff/.eclipse_keyring -showlocation
+
+!ENTRY org.eclipse.core.net 1 0 2015-12-02 08:20:12.996
+!MESSAGE System property http.nonProxyHosts has been set to local|*.local|169.254/16|*.169.254/16 by an external source. This value will be overwritten using the values from the preferences
+
+!ENTRY com.google.gdt.eclipse.suite 1 0 2015-12-02 08:20:18.294
+!MESSAGE Registering: com.google.appengine.eclipse.sdkbundle_1.9.25
+
+!ENTRY com.google.gdt.eclipse.suite 1 0 2015-12-02 08:20:18.391
+!MESSAGE Registering: com.google.gwt.eclipse.sdkbundle_2.6.0
+
+!ENTRY com.google.gwt.eclipse.core 1 0 2015-12-02 08:22:42.891
+!MESSAGE Reset default editor for extension: xml
