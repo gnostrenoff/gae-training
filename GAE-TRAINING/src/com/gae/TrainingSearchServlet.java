@@ -12,7 +12,7 @@ import com.google.appengine.api.datastore.DatastoreServiceFactory;
 import com.google.appengine.api.datastore.Entity;
 
 @SuppressWarnings("serial")
-public class ActivitiesSearchServlet extends HttpServlet {
+public class TrainingSearchServlet extends HttpServlet {
 	
 	public void doGet(HttpServletRequest req, HttpServletResponse resp)
 			throws IOException {
