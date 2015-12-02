@@ -16,6 +16,11 @@ angular
         controller: 'AboutCtrl',
         controllerAs: 'about'
       })
+      .when('/training-search', {
+        templateUrl: 'views/ha-search-screen.html',
+        controller: 'TrainingSearchCtrl',
+        controllerAs: 'trainSearch'
+      })
       .otherwise({
         redirectTo: '/'
       });
