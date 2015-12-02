@@ -1,0 +1,21 @@
+{
+  "name": "war",
+  "homepage": "https://github.com/gnostrenoff/gae-training",
+  "authors": [
+    "louis <amoros.louis@gmail.com>"
+  ],
+  "description": "",
+  "main": "",
+  "moduleType": [],
+  "license": "MIT",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "bootstrap": "~3.3.6"
+  }
+}
