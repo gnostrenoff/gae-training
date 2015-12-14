@@ -1,13 +1,6 @@
 'use strict';
 
-/**
- * @ngdoc function
- * @name testApp.controller:MainCtrl
- * @description
- * # MainCtrl
- * Controller of the testApp
- */
-angular.module('testApp').controller('MainCtrl', function($http, $scope) {
+angular.module('gaeTrainingApp').controller('MainCtrl', function($http, $scope) {
 
 	$http({
 		method : 'GET',

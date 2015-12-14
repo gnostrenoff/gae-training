@@ -1,11 +1,22 @@
 'use strict';
 
-angular.module('testApp').controller('TrainingSearchCtrl',TrainingSearchCtrlFnt);
+angular.module('gaeTrainingApp').controller('TrainingSearchCtrl',
+		TrainingSearchCtrlFnt);
 
-eventCrtFnt.$inject=['$scope','$log'];
+TrainingSearchCtrlFnt.$inject = [ '$scope', '$log' ];
 
-function TrainingSearchCtrlFnt($scope, $log){
+function TrainingSearchCtrlFnt($scope, $log) {
 
-	$scope.coucouMsg = 'coucou';
+	$scope.gLogin = function() {
+		alert("gLogin not implemented..");
+	}
+
+	$scope.yLogin = function() {
+		alert("yLogin not implemented..");
+	}
+
+	$scope.oLogin = function() {
+		alert("oLogin not implemented..");
+	}
 
 }
