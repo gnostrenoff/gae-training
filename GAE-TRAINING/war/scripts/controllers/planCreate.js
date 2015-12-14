@@ -7,5 +7,5 @@ PlanCreateCtrlFnt.$inject = [ '$scope', '$log' ];
 
 function PlanCreateCtrlFnt($scope, $log) {
 
-
+	$scope.tab = ["exo1", "exo2"];
 }
