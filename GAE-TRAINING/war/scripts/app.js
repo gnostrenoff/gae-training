@@ -16,6 +16,16 @@ angular
         controller: 'TrainingSearchCtrl',
         controllerAs: 'trainingSearch'
       })
+      .when('/plans', {
+        templateUrl: 'views/plan.html',
+        controller: 'PlanCreateCtrl',
+        controllerAs: 'planCreate'
+      })
+      .when('/plans/:planId', {
+        templateUrl: 'views/plan.html',
+        controller: 'PlanUpdateCtrl',
+        controllerAs: 'planUpdate'
+      })
       .when('/login', {
         templateUrl: 'views/login.html',
         controller: 'LoginCtrl',

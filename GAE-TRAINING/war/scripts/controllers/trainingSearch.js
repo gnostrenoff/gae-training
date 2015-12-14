@@ -7,6 +7,8 @@ TrainingSearchCtrlFnt.$inject = [ '$scope', '$log' ];
 
 function TrainingSearchCtrlFnt($scope, $log) {
 
+	$scope.tab = ["coucou", "caca", "yoyo"];
+	
 	$scope.gLogin = function() {
 		alert("gLogin not implemented..");
 	}

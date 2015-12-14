@@ -1,13 +1,21 @@
 
 <!-- ------------------------------------------- HEADER ZONE ------------------------------------------- -->
-<div class="jumbotron">
-	<form role="search">
-		<input type="text" class="form-control" placeholder="Search">
-	</form>
-	<div style="text-align: center">
-		<button class="btn btn-danger">
-			<span class="glyphicon glyphicon-plus-sign"></span> Add a Training
-			Plan
-		</button>
+<div class="panel panel-default">
+	<div class="panel-body">
+		<form role="search">
+			<input type="text" class="form-control" placeholder="Search">
+		</form>
+		<div style="text-align: center">
+			<a class="btn btn-danger" ng-href="#/plans"> <span
+				class="glyphicon glyphicon-plus-sign"></span> Add a Training Plan
+			</a>
+		</div>
+	</div>
+</div>
+<div class="row">
+	<div class="col-xs-12 col-sm-6 col-md-4 col-lg-2" ng-repeat="v in tab">
+		<div class="panel panel-default">
+			<div class="panel-body">{{v}}</div>
+		</div>
 	</div>
 </div>
