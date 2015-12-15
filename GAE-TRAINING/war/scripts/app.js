@@ -28,6 +28,11 @@ angular
         controller: 'PlanUpdateCtrl',
         controllerAs: 'planUpdate'
       })
+      .when('/exercices', {
+        templateUrl: 'views/exercice.html',
+        controller: 'ExerciceCreateCtrl',
+        controllerAs: 'exerciceCreate'
+      })
       .when('/login', {
         templateUrl: 'views/login.html',
         controller: 'LoginCtrl',
