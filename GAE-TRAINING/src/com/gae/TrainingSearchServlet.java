@@ -10,11 +10,11 @@ import javax.servlet.http.HttpServletResponse;
 import org.json.simple.JSONObject;
 
 import util.ParseData;
-import model.gae.TrainingModel;
 
 import com.google.appengine.api.datastore.DatastoreService;
 import com.google.appengine.api.datastore.DatastoreServiceFactory;
 import com.google.appengine.api.datastore.Entity;
+import com.google.appengine.api.datastore.Key;
 import com.google.appengine.api.datastore.PreparedQuery;
 import com.google.appengine.api.datastore.Query;
 
@@ -61,9 +61,13 @@ public class TrainingSearchServlet extends HttpServlet {
 		Entity training = new Entity("Training");
 		training.setProperty("title", req.get("title"));
 		training.setProperty("description", req.get("description") );
-
+		
 		//put it in datastore
-		datastore.put(training); 
+		Key trainingKey = datastore.put(training);
+		
+		response.setContentType("application/json");
+		response.getOutputStream().print(trainingKey.toString());
+		response.getOutputStream().flush();
 
 	/*	Key userKey = user.getKey();
 		try {

@@ -17,13 +17,13 @@
 			<div class="form-group">
 				<label class="col-md-2 control-label">Exercices</label>
 				<div class="col-md-10">
-					<button ng-repeat="v in tab" ng-show="tab"
-						class="btn btn-sm btn-success btn-raised">{{v}}</button>
-					<span ng-hide="tab"> <em>No exercices</em>
+					<button ng-repeat="exo in training.exercices" ng-show="training.exercices"
+						class="btn btn-sm btn-success btn-raised">{{exo.title}}</button>
+					<span ng-hide="training.exercices"> <em>No exercices</em>
 					</span>
-					<button class="btn btn-sm btn-danger btn-raised" ng-init="showExoForm = false" ng-click="showExoForm = !showExoForm">
-						<span ng-show="!showExoForm" class="glyphicon glyphicon-plus"></span>
-						<span ng-show="showExoForm" class="glyphicon glyphicon-minus"></span>
+					<button class="btn btn-sm btn-danger btn-raised" ng-init="show.exoForm = false" ng-click="show.exoForm = !show.exoForm">
+						<span ng-show="!show.exoForm" class="glyphicon glyphicon-plus"></span>
+						<span ng-show="show.exoForm" class="glyphicon glyphicon-minus"></span>
 					</button>
 				</div>
 				<div class="col-sm-12">
@@ -35,5 +35,5 @@
 		</form>
 		</div>
 	</div>
-	<div ng-include="'views/exercice.html'" ng-controller="ExerciceCreateCtrl" ng-show="showExoForm"></div>
+	<div ng-include="'views/exercice.html'" ng-controller="ExerciceCreateCtrl" ng-show="show.exoForm"></div>
 </div>

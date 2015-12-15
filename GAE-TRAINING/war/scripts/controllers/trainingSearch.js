@@ -14,7 +14,6 @@ function TrainingSearchCtrlFnt($scope, $log, comm, SweetAlert) {
 			$scope.trainingList = data;
 		},
 		function(err){
-			console.log(err);
 			SweetAlert.swal("Ooouups", "unable to load trainings from server");
 		}
 	);

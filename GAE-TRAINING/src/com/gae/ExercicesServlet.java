@@ -9,6 +9,11 @@ import javax.servlet.http.HttpServletResponse;
 
 import org.json.simple.JSONObject;
 
+import com.google.appengine.api.datastore.DatastoreService;
+import com.google.appengine.api.datastore.DatastoreServiceFactory;
+import com.google.appengine.api.datastore.Entity;
+import com.google.appengine.api.datastore.Key;
+
 import util.ParseData;
 
 
@@ -32,14 +37,19 @@ public class ExercicesServlet extends HttpServlet {
 		ParseData pD = new ParseData();
 		JSONObject req = pD.parseRequest(request);
 		
-		System.out.println(req.get("title"));
+		DatastoreService datastore = DatastoreServiceFactory.getDatastoreService();
 
-		/* DatastoreService datastore =
-		 DatastoreServiceFactory.getDatastoreService();
-		 UUID keyExercice = UUID.randomUUID();
-		 Entity exercice = new Entity(EXERCICE_ENTITY_KEY);
-		 exercice.setProperty(keyExercice.toString(), );
+		//create new training
+		Entity exo = new Entity("Exercice");
+		exo.setProperty("title", req.get("title"));
+		exo.setProperty("description", req.get("description") );
+
+		//put it in datastore
+		Key exoKey = datastore.put(exo);
 		
-		 datastore.put(exercice);*/
+		response.setContentType("application/json");
+		response.getOutputStream().print(exoKey.toString());
+		response.getOutputStream().flush();
+
 	}
 }
