@@ -9,6 +9,7 @@ function commFnc($q, $http){
 	var comm = {
 		postTraining: postTraining,
 		postExercice: postExercice
+		getTrainings: getTrainings
 	};
 
 	//function post the new created training
@@ -31,7 +32,7 @@ function commFnc($q, $http){
 		return deferred.promise;
 	};
 
-	//function post the new created training
+	//function post the new created exercices
 	function postExercice(exercice){
 		var deferred = $q.defer();
 
@@ -40,6 +41,24 @@ function commFnc($q, $http){
 			url:'/exercices',
 			headers: {'Content-Type': 'application/x-www-form-urlencoded'},
 			data:exercice
+
+		$http(req).success(function(data, status, headers, config) {
+			deferred.resolve(data);
+		}).
+		error(function(data, status, headers, config) {
+			deferred.reject(status);
+		});
+		return deferred.promise;
+	};
+
+	//function post the get all trainings
+	function getTrainings(){
+		var deferred = $q.defer();
+
+		var req ={
+			method:'GET',
+			url:'/training-search',
+			headers: {'Content-Type': 'application/x-www-form-urlencoded'},
 		}
 
 		$http(req).success(function(data, status, headers, config) {
@@ -52,5 +71,5 @@ function commFnc($q, $http){
 	};
 
 
-return comm;
+	return comm;
 };
