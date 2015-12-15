@@ -7,6 +7,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
 
 import util.ParseData;
@@ -17,66 +18,68 @@ import com.google.appengine.api.datastore.Entity;
 import com.google.appengine.api.datastore.Key;
 import com.google.appengine.api.datastore.PreparedQuery;
 import com.google.appengine.api.datastore.Query;
-
+import com.google.appengine.api.datastore.Query.Filter;
+import com.google.appengine.api.datastore.Query.FilterOperator;
 
 @SuppressWarnings("serial")
 public class TrainingSearchServlet extends HttpServlet {
-	
-	public void doGet(HttpServletRequest req, HttpServletResponse resp)
+
+	public void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws IOException {
 		
-		//get all trainings
-		DatastoreService datastore = DatastoreServiceFactory.getDatastoreService();
-		Query query = new Query("Training");
-		PreparedQuery pq = datastore.prepare(query);
+		DatastoreService datastore = DatastoreServiceFactory
+				.getDatastoreService();
+		PreparedQuery pq;
+		JSONArray json = new JSONArray();
 		
-		//prepare response
-		JSONObject responseJson = new JSONObject();
-		
-		for (Entity result : pq.asIterable()){
-			//create training object
-			JSONObject trainingJsonObj = new JSONObject();
-			trainingJsonObj.put("title", result.getProperty("title").toString());
-			trainingJsonObj.put("description", result.getProperty("description").toString());
-			responseJson.put(result.getKey().toString(), trainingJsonObj);
+		if (request.getParameter("search") != null) {
+			Filter propertyFilter = new Query.FilterPredicate("title",
+					FilterOperator.EQUAL, request.getParameter("search"));
+			Query query = new Query("Training").setFilter(propertyFilter);
+			pq = datastore.prepare(query);
+		} else {
+			Query query = new Query("Training");
+			pq = datastore.prepare(query);
 		}
 
-		resp.setContentType("application/json");
-		resp.getOutputStream().print(responseJson.toJSONString());
-		resp.getOutputStream().flush();
-		
-}
-		
-	
+		for (Entity result : pq.asIterable()) {
+			// create training object
+			JSONObject trainingJsonObj = new JSONObject();
+			trainingJsonObj
+					.put("title", result.getProperty("title").toString());
+			trainingJsonObj.put("description", result
+					.getProperty("description").toString());
+			json.add(trainingJsonObj);
+		}
+		JSONObject responseJson = new JSONObject();
+		responseJson.put("data",json);
+		response.setContentType("application/json");
+		response.getOutputStream().print(responseJson.toJSONString());
+		response.getOutputStream().flush();
+
+	}
+
 	@Override
-	protected void doPost(HttpServletRequest request, HttpServletResponse response)
-			throws ServletException, IOException {
+	protected void doPost(HttpServletRequest request,
+			HttpServletResponse response) throws ServletException, IOException {
 
 		ParseData pD = new ParseData();
 		JSONObject req = pD.parseRequest(request);
-		
-		DatastoreService datastore = DatastoreServiceFactory.getDatastoreService();
 
-		//create new training
+		DatastoreService datastore = DatastoreServiceFactory
+				.getDatastoreService();
+
+		// Create new training
 		Entity training = new Entity("Training");
 		training.setProperty("title", req.get("title"));
-		training.setProperty("description", req.get("description") );
-		
-		//put it in datastore
+		training.setProperty("description", req.get("description"));
+
+		// Put it in datastore
 		Key trainingKey = datastore.put(training);
-		
+
 		response.setContentType("application/json");
 		response.getOutputStream().print(trainingKey.toString());
 		response.getOutputStream().flush();
 
-	/*	Key userKey = user.getKey();
-		try {
-			Entity employee = datastore.get(userKey);
-		} catch (EntityNotFoundException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-		*/
-		
 	}
 }

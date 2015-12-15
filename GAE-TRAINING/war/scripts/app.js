@@ -14,30 +14,25 @@ angular
         controller: 'MainCtrl',
         controllerAs: 'main'
       })
-      .when('/training-search', {
-        templateUrl: 'views/ha-search-screen.html',
-        controller: 'TrainingSearchCtrl',
-        controllerAs: 'trainingSearch'
+      .when('/trainings/dashboard', {
+        templateUrl: 'views/trainings-dashboard.html',
+        controller: 'TrainingDashboardCtrl'
       })
-      .when('/plans', {
-        templateUrl: 'views/plan.html',
-        controller: 'PlanCreateCtrl',
-        controllerAs: 'planCreate'
+      .when('/trainings', {
+        templateUrl: 'views/training.html',
+        controller: 'TrainingCreateCtrl'
       })
-      .when('/plans/:planId', {
-        templateUrl: 'views/plan.html',
-        controller: 'PlanUpdateCtrl',
-        controllerAs: 'planUpdate'
+      .when('/trainings/:trainingId', {
+        templateUrl: 'views/training.html',
+        controller: 'TrainingUpdateCtrl'
       })
       .when('/exercices', {
         templateUrl: 'views/exercice.html',
-        controller: 'ExerciceCreateCtrl',
-        controllerAs: 'exerciceCreate'
+        controller: 'ExerciceCreateCtrl'
       })
       .when('/login', {
         templateUrl: 'views/login.html',
-        controller: 'LoginCtrl',
-        controllerAs: 'login'
+        controller: 'LoginCtrl'
       })
       .otherwise({
         redirectTo: '/'

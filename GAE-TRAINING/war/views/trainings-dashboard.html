@@ -1,0 +1,38 @@
+<div class="panel panel-default">
+	<div class="panel-body">
+		<div class="input-group">
+			<input type="text" press-enter="onSearch()" class="form-control" ng-model="search" placeholder="Search">
+			<span class="input-group-btn">
+				<button class="btn btn-default btn-raised" ng-click="onSearch()">search</button>
+			</span>
+		</div>
+		<div style="text-align: center">
+			<a class="btn btn-danger btn-raised" ng-href="#/trainings">
+				<span class="glyphicon glyphicon-plus"></span>
+				Add a Training Plan
+			</a>
+			<a class="btn btn-danger btn-raised" ng-href="#/exercices">
+				<span class="glyphicon glyphicon-plus"></span>
+				Add an Exercice
+			</a>
+		</div>
+	</div>
+</div>
+<div style="text-align:center" ng-show="showLoading">
+	<div class="spinner-loader">
+	  Loading…
+	</div>
+</div>
+<div ng-hide="showLoading">
+	<em class="text-muted" ng-hide="trainings.length > 0">Nothing found...</em>
+	<a ng-repeat="training in trainings" ng-href="#/trainings/{{training.id}}">
+		<div class="panel panel-success">
+			<div class="panel-heading">
+				<div class="wrap">{{training.title}}</div>
+			</div>
+			<div class="panel-body">
+				<div class="wrap text-muted">{{training.description}}</div>
+			</div>
+		</div>
+	</a>
+</div>

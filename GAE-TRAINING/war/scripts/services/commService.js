@@ -60,27 +60,25 @@ function commFnc($q, $http){
 		if(search) {
 			var req = {
 				method:'GET',
-				url:'/training-search',
-				headers: {'Content-Type': 'application/x-www-form-urlencoded'},
-				params: search
+				url:'/training-search?search=' + search,
+				headers: {'Content-Type': 'application/x-www-form-urlencoded'}
 			}
 		} else if (trainingId) {
 			var req = {
 				method:'GET',
-				url:'/training-search',
-				headers: {'Content-Type': 'application/x-www-form-urlencoded'},
-				params: traningId
+				url:'/training-search/' + traningId,
+				headers: {'Content-Type': 'application/x-www-form-urlencoded'}
 			}
 		} else {
 			var req = {
 				method:'GET',
 				url:'/training-search',
-				headers: {'Content-Type': 'application/x-www-form-urlencoded'},
+				headers: {'Content-Type': 'application/x-www-form-urlencoded'}
 			}
 		}
 
 		$http(req).success(function(data, status, headers, config) {
-			deferred.resolve(data);
+			deferred.resolve(data.data);
 		}).
 		error(function(data, status, headers, config) {
 			deferred.reject(status);

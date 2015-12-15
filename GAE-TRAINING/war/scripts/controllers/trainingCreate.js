@@ -1,11 +1,11 @@
 'use strict';
 
-angular.module('gaeTrainingApp').controller('PlanCreateCtrl',
-		PlanCreateCtrlFnt);
+angular.module('gaeTrainingApp').controller('TrainingCreateCtrl',
+		TrainingCreateCtrlFnt);
 
-PlanCreateCtrlFnt.$inject = [ '$scope', '$log', 'comm', 'SweetAlert', 'factory'];
+TrainingCreateCtrlFnt.$inject = [ '$scope', '$log', 'comm', 'SweetAlert', 'factory'];
 
-function PlanCreateCtrlFnt($scope, $log, comm, SweetAlert, factory) {
+function TrainingCreateCtrlFnt($scope, $log, comm, SweetAlert, factory) {
 
 	$scope.show = {};
 	$scope.show.exoForm;
@@ -13,7 +13,7 @@ function PlanCreateCtrlFnt($scope, $log, comm, SweetAlert, factory) {
 	$scope.training.exercices = [];
 
 	$scope.addTraining = function(){
-		comm.postTraining($scope.plan).then(
+		comm.postTraining($scope.Training).then(
 			function(res){
 				SweetAlert.swal("Good job!", "Your new training was successsfully added", "success");
 			},
@@ -26,7 +26,7 @@ function PlanCreateCtrlFnt($scope, $log, comm, SweetAlert, factory) {
 	// $scope.addExercice = function(exercice){
 	// 	// comm.postExercice($scope.exercice).then(
 	// 	// 	function(res){
-	// 	// 		//in case of success, assign the created exo to the current training plan
+	// 	// 		//in case of success, assign the created exo to the current training Training
 	// 	//
 	// 	// 		$scope.showExoForm = false;
 	// 	// 		SweetAlert.swal("Good job!", "Your new exercice was successsfully added", "success");
