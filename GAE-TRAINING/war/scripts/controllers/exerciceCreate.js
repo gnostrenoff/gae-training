@@ -3,22 +3,15 @@
 angular.module('gaeTrainingApp').controller('ExerciceCreateCtrl',
 		ExerciceCreateCtrlFnt);
 
-ExerciceCreateCtrlFnt.$inject = [ '$scope', '$log', 'comm', 'SweetAlert'];
+ExerciceCreateCtrlFnt.$inject = [ '$scope', '$log', 'comm', 'SweetAlert', 'factory'];
 
-function ExerciceCreateCtrlFnt($scope, $log, comm, SweetAlert) {
+function ExerciceCreateCtrlFnt($scope, $log, comm, SweetAlert, factory) {
 
-	$scope.exercice = {};
+	$scope.addExercice = function(exercice){
 
-	$scope.addExercice = function(){
-		comm.postExercice($scope.exercice).then(
-			function(res){
-				$scope.showExoForm = false;
-				SweetAlert.swal("Good job!", "Your new exercice was successsfully added", "success");
-			},
-			function(err){
-				SweetAlert.swal("Ooouups", "We were not able to save your new exercice, try later");
-			}
-		);
+		var newExo = factory.exoCreation(exercice.title, exercice.description);
+		$scope.training.exercices.push(newExo);
+		$scope.show.exoForm = false;
 	}
 
 }

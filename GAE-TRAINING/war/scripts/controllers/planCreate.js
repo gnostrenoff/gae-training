@@ -3,9 +3,14 @@
 angular.module('gaeTrainingApp').controller('PlanCreateCtrl',
 		PlanCreateCtrlFnt);
 
-PlanCreateCtrlFnt.$inject = [ '$scope', '$log', 'comm', 'SweetAlert'];
+PlanCreateCtrlFnt.$inject = [ '$scope', '$log', 'comm', 'SweetAlert', 'factory'];
 
-function PlanCreateCtrlFnt($scope, $log, comm, SweetAlert) {
+function PlanCreateCtrlFnt($scope, $log, comm, SweetAlert, factory) {
+
+	$scope.show = {};
+	$scope.show.exoForm;
+	$scope.training = {};
+	$scope.training.exercices = [];
 
 	$scope.addTraining = function(){
 		comm.postTraining($scope.plan).then(
@@ -17,5 +22,26 @@ function PlanCreateCtrlFnt($scope, $log, comm, SweetAlert) {
 			}
 		);
 	}
+
+	// $scope.addExercice = function(exercice){
+	// 	// comm.postExercice($scope.exercice).then(
+	// 	// 	function(res){
+	// 	// 		//in case of success, assign the created exo to the current training plan
+	// 	//
+	// 	// 		$scope.showExoForm = false;
+	// 	// 		SweetAlert.swal("Good job!", "Your new exercice was successsfully added", "success");
+	// 	// 	},
+	// 	// 	function(err){
+	// 	// 		SweetAlert.swal("Ooouups", "We were not able to save your new exercice, try later");
+	// 	// 	}
+	// 	// );
+	//
+	// 	//$scope.training.exercices.push($scope.exercice);
+	// 	//console.log($scope.training.exercices);
+	//
+	// 	var newExo = factory.exoCreation(exercice.title, exercice.description);
+	// 	$scope.training.exercices.push(newExo);
+	// 	$scope.show.exoForm = false;
+	// }
 
 }
