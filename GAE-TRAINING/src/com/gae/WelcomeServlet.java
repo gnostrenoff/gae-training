@@ -53,8 +53,7 @@ public class WelcomeServlet extends HttpServlet {
 			// creer/recuperer un cache comme ci-dessous
 			// cache = cacheFactory.createCache(Collections.emptyMap());
 		} catch (CacheException e) {
-			// Traitement en cas d'erreur sur la r�cup�ration/configuration du
-			// cache
+			e.printStackTrace();
 		}
 
 		String msg = getWelcomeMsg(datastore, cache);
