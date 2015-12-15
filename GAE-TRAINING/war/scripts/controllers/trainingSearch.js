@@ -7,15 +7,29 @@ TrainingSearchCtrlFnt.$inject = ['$scope', '$log', 'comm', 'SweetAlert'];
 
 function TrainingSearchCtrlFnt($scope, $log, comm, SweetAlert) {
 
-	$scope.trainingList = {};
+	$scope.trainings = {};
 
-	comm.getTrainings().then(
+	comm.getTrainings(null, null).then(
 		function(data){
-			$scope.trainingList = data;
+			$scope.trainings = data;
 		},
 		function(err){
-			console.log(err);
-			SweetAlert.swal("Ooouups", "unable to load trainings from server");
+			console.error(err);
+			SweetAlert.swal("Ooouups", "Unable to load trainings from server.");
 		}
 	);
+
+	$scope.onSearch = function() {
+		console.log($scope.search);
+		comm.getTrainings(null, $scope.search).then(
+			function(data){
+				$scope.trainings = data;
+			},
+			function(err){
+				console.error(err);
+				SweetAlert.swal("Ooouups", "Unable to load trainings from server.");
+			}
+		);
+	};
+
 }

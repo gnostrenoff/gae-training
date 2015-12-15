@@ -1,8 +1,11 @@
 <div class="panel panel-default">
 	<div class="panel-body">
-		<form role="search">
-			<input type="text" class="form-control" placeholder="Search">
-		</form>
+		<div class="input-group">
+			<input type="text" class="form-control" ng-model="search" placeholder="Search">
+			<span class="input-group-btn">
+				<button class="btn btn-default btn-raised" ng-click="onSearch()">search</button>
+			</span>
+		</div>
 		<div style="text-align: center">
 			<a class="btn btn-danger btn-raised" ng-href="#/plans">
 				<span class="glyphicon glyphicon-plus"></span>
@@ -15,10 +18,13 @@
 		</div>
 	</div>
 </div>
-<div class="row">
-	<div class="col-xs-12 col-sm-6 col-md-4 col-lg-2" ng-repeat="v in trainingList">
-		<div class="panel panel-default">
-			<div class="panel-body">{{v.title}}</div>
+<a ng-repeat="training in trainings" ng-href="#/plans/{{training.id}}">
+	<div class="panel panel-success">
+		<div class="panel-heading">
+			<div class="wrap">{{training.title}}</div>
+		</div>
+		<div class="panel-body">
+			<div class="wrap text-muted">{{training.description}}</div>
 		</div>
 	</div>
-</div>
+</a>

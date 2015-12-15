@@ -1,0 +1,7 @@
+.wrap {
+  word-wrap: break-word;
+}
+
+.has-pointer {
+  cursor: pointer;
+}

@@ -53,13 +53,30 @@ function commFnc($q, $http){
 	};
 
 	//function post the get all trainings
-	function getTrainings(){
+	function getTrainings(trainingId, search){
+
 		var deferred = $q.defer();
 
-		var req ={
-			method:'GET',
-			url:'/training-search',
-			headers: {'Content-Type': 'application/x-www-form-urlencoded'},
+		if(search) {
+			var req = {
+				method:'GET',
+				url:'/training-search',
+				headers: {'Content-Type': 'application/x-www-form-urlencoded'},
+				params: search
+			}
+		} else if (trainingId) {
+			var req = {
+				method:'GET',
+				url:'/training-search',
+				headers: {'Content-Type': 'application/x-www-form-urlencoded'},
+				params: traningId
+			}
+		} else {
+			var req = {
+				method:'GET',
+				url:'/training-search',
+				headers: {'Content-Type': 'application/x-www-form-urlencoded'},
+			}
 		}
 
 		$http(req).success(function(data, status, headers, config) {
@@ -69,6 +86,7 @@ function commFnc($q, $http){
 			deferred.reject(status);
 		});
 		return deferred.promise;
+
 	};
 
 
