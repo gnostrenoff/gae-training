@@ -2,7 +2,9 @@
 
 angular
   .module('gaeTrainingApp', [
-    'ngRoute'
+    'ngRoute',
+    'commService',
+    'oitozero.ngSweetAlert'
   ])
   .config(function ($routeProvider) {
     $routeProvider
