@@ -7,13 +7,8 @@ PlanCreateCtrlFnt.$inject = [ '$scope', '$log', 'comm', 'SweetAlert'];
 
 function PlanCreateCtrlFnt($scope, $log, comm, SweetAlert) {
 
-	$scope.tab = ["exo1", "exo2"];
-
 	$scope.addTraining = function(){
-
-		//check for empty fields
-
-		comm.postTraining($scope.title, $scope.description).then(
+		comm.postTraining($scope.plan).then(
 			function(res){
 				SweetAlert.swal("Good job!", "Your new training was successsfully added", "success");
 			},

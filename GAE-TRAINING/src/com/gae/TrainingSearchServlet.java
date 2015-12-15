@@ -9,6 +9,7 @@ import javax.servlet.http.HttpServletResponse;
 
 import org.json.simple.JSONObject;
 
+import util.ParseData;
 import model.gae.TrainingModel;
 
 import com.google.appengine.api.datastore.DatastoreService;
@@ -48,15 +49,18 @@ public class TrainingSearchServlet extends HttpServlet {
 		
 	
 	@Override
-	protected void doPost(HttpServletRequest req, HttpServletResponse resp)
+	protected void doPost(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 
+		ParseData pD = new ParseData();
+		JSONObject req = pD.parseRequest(request);
+		
 		DatastoreService datastore = DatastoreServiceFactory.getDatastoreService();
 
 		//create new training
 		Entity training = new Entity("Training");
-		training.setProperty("title", req.getParameter("title"));
-		training.setProperty("description", req.getParameter("description") );
+		training.setProperty("title", req.get("title"));
+		training.setProperty("description", req.get("description") );
 
 		//put it in datastore
 		datastore.put(training); 
