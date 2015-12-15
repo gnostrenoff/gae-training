@@ -25,26 +25,6 @@ http://java.sun.com/xml/ns/javaee/web-app_2_5.xsd"
 		<url-pattern>/welcome</url-pattern>
 	</servlet-mapping>
 
-
-	<servlet>
-		<servlet-name>CheckUser</servlet-name>
-		<servlet-class>com.gae.CheckUserServlet</servlet-class>
-	</servlet>
-	<servlet-mapping>
-		<servlet-name>CheckUser</servlet-name>
-		<url-pattern>/checkUser</url-pattern>
-	</servlet-mapping>
-
-
-	<servlet>
-		<servlet-name>LiveGaeProject</servlet-name>
-		<servlet-class>com.gae.LiveGaeProjectServlet</servlet-class>
-	</servlet>
-	<servlet-mapping>
-		<servlet-name>LiveGaeProject</servlet-name>
-		<url-pattern>/livegaeproject</url-pattern>
-	</servlet-mapping>
-
 	<servlet>
 		<servlet-name>TrainingSearch</servlet-name>
 		<servlet-class>com.gae.TrainingSearchServlet</servlet-class>
