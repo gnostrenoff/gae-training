@@ -13,14 +13,14 @@ function commFnc($q, $http){
 	};
 
 	//function post the new created training
-	function postTraining(title, description){
+	function postTraining(plan){
 		var deferred = $q.defer();
 
 		var req ={
 			method:'POST',
 			url:'/training-search',
 			headers: {'Content-Type': 'application/x-www-form-urlencoded'},
-			data:$("#idNewTrainingForm").serialize()
+			data:plan
 		}
 
 		$http(req).success(function(data, status, headers, config) {

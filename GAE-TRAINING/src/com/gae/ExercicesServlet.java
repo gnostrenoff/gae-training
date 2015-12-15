@@ -1,6 +1,5 @@
 package com.gae;
 
-import java.io.BufferedReader;
 import java.io.IOException;
 
 import javax.servlet.ServletException;
@@ -9,8 +8,8 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import org.json.simple.JSONObject;
-import org.json.simple.parser.JSONParser;
-import org.json.simple.parser.ParseException;
+
+import util.ParseData;
 
 
 @SuppressWarnings("serial")
@@ -30,27 +29,11 @@ public class ExercicesServlet extends HttpServlet {
 	protected void doPost(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 
+		ParseData pD = new ParseData();
+		JSONObject req = pD.parseRequest(request);
 		
-		StringBuffer sb = new StringBuffer();
+		System.out.println(req.get("title"));
 
-		try {
-			BufferedReader reader = request.getReader();
-			String line = null;
-			while ((line = reader.readLine()) != null) {
-				sb.append(line);
-			}
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
-
-		JSONParser parser = new JSONParser();
-		JSONObject req = null;
-		try {
-			req = (JSONObject) parser.parse(sb.toString());
-		} catch (ParseException e) {
-			e.printStackTrace();
-		}
-				
 		/* DatastoreService datastore =
 		 DatastoreServiceFactory.getDatastoreService();
 		 UUID keyExercice = UUID.randomUUID();

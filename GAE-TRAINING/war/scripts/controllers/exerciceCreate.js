@@ -10,9 +10,6 @@ function ExerciceCreateCtrlFnt($scope, $log, comm, SweetAlert) {
 	$scope.exercice = {};
 
 	$scope.addExercice = function(){
-
-		console.log($scope.exercice);
-
 		comm.postExercice($scope.exercice).then(
 			function(res){
 				$scope.showExoForm = false;
