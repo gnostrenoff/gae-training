@@ -16,23 +16,25 @@ public class TrainingSearchServlet extends HttpServlet {
 	
 	public void doGet(HttpServletRequest req, HttpServletResponse resp)
 			throws IOException {
-		resp.setContentType("text/plain");
-		resp.getWriter().println("Hello, world");
+		
+		//get all training
+		DatastoreService datastore = DatastoreServiceFactory.getDatastoreService();
+		
 	}
 	
 	@Override
 	protected void doPost(HttpServletRequest req, HttpServletResponse resp)
 			throws ServletException, IOException {
-		
+
 		DatastoreService datastore = DatastoreServiceFactory.getDatastoreService();
 
-		Entity user = new Entity("User");
-		user.setProperty("name", req.getParameter("name"));
-		user.setProperty("surname", req.getParameter("surname") );
-		user.setProperty("login", req.getParameter("login"));
-		user.setProperty("pwd", req.getParameter("pwd"));
+		//create new training
+		Entity training = new Entity("Training");
+		training.setProperty("title", req.getParameter("title"));
+		training.setProperty("description", req.getParameter("description") );
 
-		datastore.put(user); 
+		//put it in datastore
+		datastore.put(training); 
 
 	/*	Key userKey = user.getKey();
 		try {

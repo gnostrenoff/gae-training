@@ -2,16 +2,17 @@
 	<div class="panel panel-info">
 		<div class="panel-heading">Add Training Plan</div>
 		<div class="panel-body">
+			<form id="idNewTrainingForm">
 			<div class="form-group">
 				<label class="col-md-2 control-label">Title</label>
 				<div class="col-md-10">
-					<input type="text" class="form-control">
+					<input type="text" class="form-control" ng-model="title" name="title">
 				</div>
 			</div>
 			<div class="form-group">
 				<label class="col-md-2 control-label">Description</label>
 				<div class="col-md-10">
-					<textarea class="form-control"></textarea>
+					<textarea class="form-control" ng-model="description" name="description"></textarea>
 				</div>
 			</div>
 			<div class="form-group">
@@ -25,7 +26,13 @@
 						<span class="glyphicon glyphicon-plus"></span>
 					</button>
 				</div>
+				<div class="col-sm-12">
+				<div class="pull-right">
+					<button class="btn btn-raised btn-danger" ng-click="addTraining()">Create</button>
+				</div>
 			</div>
+			</div>
+		</form>
 		</div>
 	</div>
 </div>
