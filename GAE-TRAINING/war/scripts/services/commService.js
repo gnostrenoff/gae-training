@@ -8,7 +8,7 @@ function commFnc($q, $http){
 
 	var comm = {
 		postTraining: postTraining,
-		postExercice: postExercice
+		postExercice: postExercice,
 		getTrainings: getTrainings
 	};
 
@@ -41,6 +41,7 @@ function commFnc($q, $http){
 			url:'/exercices',
 			headers: {'Content-Type': 'application/x-www-form-urlencoded'},
 			data:exercice
+		}
 
 		$http(req).success(function(data, status, headers, config) {
 			deferred.resolve(data);
