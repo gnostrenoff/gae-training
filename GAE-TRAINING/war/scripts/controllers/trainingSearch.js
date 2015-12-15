@@ -3,9 +3,9 @@
 angular.module('gaeTrainingApp').controller('TrainingSearchCtrl',
 		TrainingSearchCtrlFnt);
 
-TrainingSearchCtrlFnt.$inject = ['$scope', '$log', 'comm'];
+TrainingSearchCtrlFnt.$inject = ['$scope', '$log', 'comm', 'SweetAlert'];
 
-function TrainingSearchCtrlFnt($scope, $log, comm) {
+function TrainingSearchCtrlFnt($scope, $log, comm, SweetAlert) {
 
 	$scope.tab = ["coucou", "caca", "yoyo"];
 	$scope.trainingList = {};
@@ -16,7 +16,8 @@ function TrainingSearchCtrlFnt($scope, $log, comm) {
 			$scope.trainingList = data;
 		},
 		function(err){
-			SweetAlert.swal("Ooouups", err);
+			console.log(err);
+			SweetAlert.swal("Ooouups", "unable to load trainings from server");
 		}
 	);
 
