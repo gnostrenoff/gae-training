@@ -6,6 +6,10 @@
 <meta name="description" content="">
 <meta name="viewport" content="width=device-width">
 <!-- Place favicon.ico and apple-touch-icon.png in the root directory -->
+
+<meta name="google-signin-scope" content="amoros.louis@gmail.com">
+<meta name="google-signin-client_id" content="947511261768-bsabk6odsrqpt6c5c3j26q4rgfmkp25i.apps.googleusercontent.com">
+
 <link rel="stylesheet"
 	href="bower_components/bootstrap/dist/css/bootstrap.css" />
 <link rel="stylesheet"
@@ -39,10 +43,8 @@
 						<li><a ng-href="#/training-search">Training</a></li>
 					</ul>
 
-					<ul class="nav navbar-nav navbar-right btn-group-sm">
-						<li><a href="" ng-click="gLogin()">Google</a></li>
-						<li><a href="" ng-click="yLogin()">Yahoo</a></li>
-						<li><a href="" ng-click="oLogin()">OpenID</a></li>
+					<ul class="nav navbar-nav navbar-right">
+						<li><a href="" class="g-signin2" data-onsuccess="onSignIn" style="padding: 11px 0px"></a></li>
 					</ul>
 				</div>
 			</div>
@@ -52,6 +54,23 @@
 	<div class="container">
 		<div ng-view=""></div>
 	</div>
+
+	<script>
+		function onSignIn(googleUser) {
+			// Useful data for your client-side scripts:
+			
+			var profile = googleUser.getBasicProfile();
+			console.log("ID: " + profile.getId()); // Don't send this directly to your server!
+			console.log("Name: " + profile.getName());
+			console.log("Image URL: " + profile.getImageUrl());
+			console.log("Email: " + profile.getEmail());
+
+			// The ID token you need to pass to your backend:
+			var id_token = googleUser.getAuthResponse().id_token;
+			console.log("ID Token: " + id_token);
+		};
+	</script>
+	<script src="https://apis.google.com/js/platform.js" async defer></script>
 
 	<script src="bower_components/jquery/dist/jquery.js"></script>
 	<script src="bower_components/angular/angular.js"></script>
@@ -66,6 +85,7 @@
 	<script src="scripts/app.js"></script>
 	<script src="scripts/controllers/gaeTrainingAppCtrl.js"></script>
 	<script src="scripts/controllers/main.js"></script>
+	<script src="scripts/controllers/login.js"></script>
 	<script src="scripts/controllers/trainingSearch.js"></script>
 	<script src="scripts/controllers/planCreate.js"></script>
 	<script src="scripts/controllers/planUpdate.js"></script>

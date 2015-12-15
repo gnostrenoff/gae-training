@@ -18,11 +18,9 @@
 			<div class="form-group">
 				<label class="col-md-2 control-label">Exercices</label>
 				<div class="col-md-10">
-					<button ng-repeat="v in tab" ng-show="tab" class="btn btn-sm btn-success btn-raised">
-						{{v}}
-					</button>
-					<span ng-hide="tab">
-						<em>No exercices</em>
+					<button ng-repeat="v in tab" ng-show="tab"
+						class="btn btn-sm btn-success btn-raised">{{v}}</button>
+					<span ng-hide="tab"> <em>No exercices</em>
 					</span>
 					<button class="btn btn-sm btn-danger btn-raised">
 						<span class="glyphicon glyphicon-plus"></span>

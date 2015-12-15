@@ -43,7 +43,7 @@ public class CheckUserServlet extends HttpServlet {
 	    props.put(GCacheFactory.EXPIRATION_DELTA, 3600);
 	    props.put(MemcacheService.SetPolicy.ADD_ONLY_IF_NOT_PRESENT, true);
 	    try {
-	      // R�cup�ration du Cache
+	      // Recuperation du Cache
 	        CacheFactory cacheFactory = CacheManager.getInstance().getCacheFactory();
 	        // cr�ation/r�cup�ration du cache suivant des propri�t�s sp�cifiques
 	        cache = cacheFactory.createCache(props);
