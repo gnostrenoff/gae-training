@@ -15,6 +15,7 @@ function ExerciceCreateCtrlFnt($scope, $log, comm, SweetAlert) {
 
 		comm.postExercice($scope.exercice).then(
 			function(res){
+				$scope.showExoForm = false;
 				SweetAlert.swal("Good job!", "Your new exercice was successsfully added", "success");
 			},
 			function(err){

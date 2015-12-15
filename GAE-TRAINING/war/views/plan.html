@@ -22,17 +22,19 @@
 						class="btn btn-sm btn-success btn-raised">{{v}}</button>
 					<span ng-hide="tab"> <em>No exercices</em>
 					</span>
-					<button class="btn btn-sm btn-danger btn-raised">
-						<span class="glyphicon glyphicon-plus"></span>
+					<button class="btn btn-sm btn-danger btn-raised" ng-init="showExoForm = false" ng-click="showExoForm = !showExoForm">
+						<span ng-show="!showExoForm" class="glyphicon glyphicon-plus"></span>
+						<span ng-show="showExoForm" class="glyphicon glyphicon-minus"></span>
 					</button>
 				</div>
 				<div class="col-sm-12">
 				<div class="pull-right">
-					<button class="btn btn-raised btn-danger" ng-click="addTraining()">Create</button>
+					<button class="btn btn-raised btn-danger" ng-click="addTraining()">SAVE</button>
 				</div>
 			</div>
 			</div>
 		</form>
 		</div>
 	</div>
+	<div ng-include="'views/exercice.html'" ng-controller="ExerciceCreateCtrl" ng-show="showExoForm"></div>
 </div>
