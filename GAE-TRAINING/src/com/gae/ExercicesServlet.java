@@ -2,21 +2,11 @@ package com.gae;
 
 import java.io.BufferedReader;
 import java.io.IOException;
-import java.util.UUID;
-
-import org.json.simple.JSONObject;
-import org.json.simple.parser.JSONParser;
-import org.json.simple.parser.ParseException;
-
 
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-
-import com.google.appengine.api.datastore.DatastoreService;
-import com.google.appengine.api.datastore.DatastoreServiceFactory;
-import com.google.appengine.api.datastore.Entity;
 
 @SuppressWarnings("serial")
 public class ExercicesServlet extends HttpServlet {
@@ -47,16 +37,16 @@ public class ExercicesServlet extends HttpServlet {
 			e.printStackTrace();
 		}
 
-		JSONParser parser = new JSONParser();
-		JSONObject req = null;
-		try {
-			req = (JSONObject) parser.parse(sb.toString());
-		} catch (ParseException e) {
-			e.printStackTrace();
-		}
-
-		String login = (String) req.get("login");
-		String pwd = (String) req.get("pwd");
+//		JSONParser parser = new JSONParser();
+//		JSONObject req = null;
+//		try {
+//			req = (JSONObject) parser.parse(sb.toString());
+//		} catch (ParseException e) {
+//			e.printStackTrace();
+//		}
+//
+//		String login = (String) req.get("login");
+//		String pwd = (String) req.get("pwd");
 
 		// DatastoreService datastore =
 		// DatastoreServiceFactory.getDatastoreService();
