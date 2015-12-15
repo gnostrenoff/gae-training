@@ -22,7 +22,7 @@ import com.google.appengine.api.datastore.Query.Filter;
 import com.google.appengine.api.datastore.Query.FilterOperator;
 
 @SuppressWarnings("serial")
-public class TrainingSearchServlet extends HttpServlet {
+public class TrainingsServlet extends HttpServlet {
 
 	public void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws IOException {
@@ -49,6 +49,7 @@ public class TrainingSearchServlet extends HttpServlet {
 					.put("title", result.getProperty("title").toString());
 			trainingJsonObj.put("description", result
 					.getProperty("description").toString());
+			trainingJsonObj.put("id", result.getKey().getId());
 			json.add(trainingJsonObj);
 		}
 		JSONObject responseJson = new JSONObject();
@@ -75,10 +76,19 @@ public class TrainingSearchServlet extends HttpServlet {
 		training.setProperty("description", req.get("description"));
 
 		// Put it in datastore
-		Key trainingKey = datastore.put(training);
+		datastore.put(training);
+		
+		// Send back json
+		JSONObject trainingJsonObj = new JSONObject();
+		trainingJsonObj
+				.put("title", training.getProperty("title").toString());
+		trainingJsonObj.put("description", training
+				.getProperty("description").toString());
+		trainingJsonObj.put("id", training.getKey().getId());
+		
 
 		response.setContentType("application/json");
-		response.getOutputStream().print(trainingKey.toString());
+		response.getOutputStream().print(trainingJsonObj.toJSONString());
 		response.getOutputStream().flush();
 
 	}

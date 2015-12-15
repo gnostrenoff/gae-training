@@ -26,12 +26,12 @@ http://java.sun.com/xml/ns/javaee/web-app_2_5.xsd"
 	</servlet-mapping>
 
 	<servlet>
-		<servlet-name>TrainingSearch</servlet-name>
-		<servlet-class>com.gae.TrainingSearchServlet</servlet-class>
+		<servlet-name>Trainings</servlet-name>
+		<servlet-class>com.gae.TrainingsServlet</servlet-class>
 	</servlet>
 	<servlet-mapping>
-		<servlet-name>TrainingSearch</servlet-name>
-		<url-pattern>/training-search</url-pattern>
+		<servlet-name>Trainings</servlet-name>
+		<url-pattern>/trainings</url-pattern>
 	</servlet-mapping>
 
 	<servlet>

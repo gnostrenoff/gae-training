@@ -40,12 +40,12 @@ public class ExercicesServlet extends HttpServlet {
 		DatastoreService datastore = DatastoreServiceFactory
 				.getDatastoreService();
 
-		// create new training
+		// Create new exercice
 		Entity exo = new Entity("Exercice");
 		exo.setProperty("title", req.get("title"));
 		exo.setProperty("description", req.get("description"));
 
-		// put it in datastore
+		// Put it in datastore
 		Key exoKey = datastore.put(exo);
 
 		response.setContentType("application/json");

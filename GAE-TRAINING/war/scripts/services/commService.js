@@ -18,7 +18,7 @@ function commFnc($q, $http){
 
 		var req ={
 			method:'POST',
-			url:'/training-search',
+			url:'/trainings',
 			headers: {'Content-Type': 'application/x-www-form-urlencoded'},
 			data:plan
 		}
@@ -44,6 +44,7 @@ function commFnc($q, $http){
 		}
 
 		$http(req).success(function(data, status, headers, config) {
+			console.log(data)
 			deferred.resolve(data);
 		}).
 		error(function(data, status, headers, config) {
@@ -60,19 +61,19 @@ function commFnc($q, $http){
 		if(search) {
 			var req = {
 				method:'GET',
-				url:'/training-search?search=' + search,
+				url:'/trainings?search=' + search,
 				headers: {'Content-Type': 'application/x-www-form-urlencoded'}
 			}
 		} else if (trainingId) {
 			var req = {
 				method:'GET',
-				url:'/training-search/' + traningId,
+				url:'/trainings/' + traningId,
 				headers: {'Content-Type': 'application/x-www-form-urlencoded'}
 			}
 		} else {
 			var req = {
 				method:'GET',
-				url:'/training-search',
+				url:'/trainings',
 				headers: {'Content-Type': 'application/x-www-form-urlencoded'}
 			}
 		}
