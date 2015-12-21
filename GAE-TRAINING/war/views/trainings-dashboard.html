@@ -25,7 +25,7 @@
 </div>
 <div ng-hide="showLoading">
 	<em class="text-muted" ng-hide="trainings.length > 0">Nothing found...</em>
-	<a ng-repeat="training in trainings" ng-href="#/trainings/{{training.id}}">
+	<a ng-repeat="training in trainings" ng-href="#/trainings/{{training.title}}">
 		<div class="panel panel-success">
 			<div class="panel-heading">
 				<div class="wrap">{{training.title}} - {{training.id}}</div>

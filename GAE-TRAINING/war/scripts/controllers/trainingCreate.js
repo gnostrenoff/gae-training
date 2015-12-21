@@ -15,8 +15,6 @@ function TrainingCreateCtrlFnt($scope, $log, comm, SweetAlert, factory) {
 	$scope.addTraining = function(){
 		var newTraining = factory.trainingCreation($scope.training.title, $scope.training.description, $scope.training.exercices);
 
-console.log(newTraining);
-
 		//post the training
 		comm.postTraining(newTraining).then(
 			function(data){

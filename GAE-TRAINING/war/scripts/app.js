@@ -23,7 +23,7 @@ angular
         controller: 'TrainingCreateCtrl'
       })
       .when('/trainings/:trainingId', {
-        templateUrl: 'views/training.html',
+        templateUrl: 'views/trainingDetails.html',
         controller: 'TrainingUpdateCtrl'
       })
       .when('/exercices', {

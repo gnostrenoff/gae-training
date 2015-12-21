@@ -67,7 +67,7 @@ function commFnc($q, $http){
 		} else if (trainingTilte) {
 			var req = {
 				method:'GET',
-				url:'/trainings?title=' + title,
+				url:'/trainings?title=' + trainingTilte,
 				headers: {'Content-Type': 'application/x-www-form-urlencoded'}
 			}
 		} else {

@@ -29,6 +29,8 @@ public class TrainingsServlet extends HttpServlet {
 	public void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws IOException {
 		
+		System.out.println("get training");
+		
 		DatastoreService datastore = DatastoreServiceFactory
 				.getDatastoreService();
 		PreparedQuery pq;
@@ -39,7 +41,12 @@ public class TrainingsServlet extends HttpServlet {
 					FilterOperator.EQUAL, request.getParameter("search"));
 			Query query = new Query("Training").setFilter(propertyFilter);
 			pq = datastore.prepare(query);
-		} else {
+		} else if(request.getParameter("title") != null){
+			Filter propertyFilter = new Query.FilterPredicate("title",
+					FilterOperator.EQUAL, request.getParameter("title"));
+			Query query = new Query("Training").setFilter(propertyFilter);
+			pq = datastore.prepare(query);
+		}else{
 			Query query = new Query("Training");
 			pq = datastore.prepare(query);
 		}
