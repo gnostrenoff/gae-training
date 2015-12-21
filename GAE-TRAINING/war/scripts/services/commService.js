@@ -54,7 +54,7 @@ function commFnc($q, $http){
 	};
 
 	//function post the get all trainings
-	function getTrainings(trainingId, search){
+	function getTrainings(trainingTilte, search){
 
 		var deferred = $q.defer();
 
@@ -64,10 +64,10 @@ function commFnc($q, $http){
 				url:'/trainings?search=' + search,
 				headers: {'Content-Type': 'application/x-www-form-urlencoded'}
 			}
-		} else if (trainingId) {
+		} else if (trainingTilte) {
 			var req = {
 				method:'GET',
-				url:'/trainings/' + traningId,
+				url:'/trainings?title=' + title,
 				headers: {'Content-Type': 'application/x-www-form-urlencoded'}
 			}
 		} else {

@@ -14,21 +14,21 @@ function factoryFnc(){
 		mapToArray: mapToArray
 	};
 
-	function trainingCreation(title,txt){
+	function trainingCreation(title,description, exerciceArray){
 
 		var training = {};
-		//todo
-
+		training.title = title;
+		training.description = description;
+		training.exercices = exerciceArray;
 		return training;
 
 	};
 
-	function exoCreation(title,txt){
+	function exoCreation(title,description){
 
 		var exo = {};
-		exo.txt = txt;
+		exo.description = description;
 		exo.title = title;
-
 		return exo;
 
 	};

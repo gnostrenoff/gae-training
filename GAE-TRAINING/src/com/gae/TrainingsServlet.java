@@ -1,6 +1,8 @@
 package com.gae;
 
 import java.io.IOException;
+import java.util.ArrayList;
+import java.util.List;
 
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
@@ -70,21 +72,33 @@ public class TrainingsServlet extends HttpServlet {
 		DatastoreService datastore = DatastoreServiceFactory
 				.getDatastoreService();
 
+		System.out.println(req);
+		
 		// Create new training
 		Entity training = new Entity("Training");
 		training.setProperty("title", req.get("title"));
 		training.setProperty("description", req.get("description"));
 
-		// Put it in datastore
-		datastore.put(training);
+		//put it in datastore and get its key for child exercices storing
+		Key trainingKey = datastore.put(training);
+		
+		//get exercices
+		List<Object> exoList = new ArrayList<Object>();
+		exoList = (ArrayList<Object>)req.get("exercices");
+		
+		//put associated exercices
+		for(int i = 0; i < exoList.size(); i++){
+			JSONObject exoJson = (JSONObject) exoList.get(i);
+			Entity exo = new Entity("Exercice", trainingKey);
+			exo.setProperty("title", exoJson.get("title"));
+			exo.setProperty("description", exoJson.get("description"));
+			datastore.put(exo);
+		}
 		
 		// Send back json
 		JSONObject trainingJsonObj = new JSONObject();
-		trainingJsonObj
-				.put("title", training.getProperty("title").toString());
-		trainingJsonObj.put("description", training
-				.getProperty("description").toString());
-		trainingJsonObj.put("id", training.getKey().getId());
+		trainingJsonObj.put("title", req.get("title"));
+		trainingJsonObj.put("description", req.get("description"));
 		
 
 		response.setContentType("application/json");
