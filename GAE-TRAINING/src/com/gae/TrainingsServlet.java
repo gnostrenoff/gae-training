@@ -29,8 +29,6 @@ public class TrainingsServlet extends HttpServlet {
 	public void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws IOException {
 		
-		System.out.println("get training");
-		
 		DatastoreService datastore = DatastoreServiceFactory
 				.getDatastoreService();
 		PreparedQuery pq;

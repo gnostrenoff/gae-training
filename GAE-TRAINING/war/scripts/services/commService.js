@@ -9,7 +9,8 @@ function commFnc($q, $http){
 	var comm = {
 		postTraining: postTraining,
 		postExercice: postExercice,
-		getTrainings: getTrainings
+		getTrainings: getTrainings,
+		getExercices: getExercices
 	};
 
 	//function post the new created training
@@ -76,6 +77,27 @@ function commFnc($q, $http){
 				url:'/trainings',
 				headers: {'Content-Type': 'application/x-www-form-urlencoded'}
 			}
+		}
+
+		$http(req).success(function(data, status, headers, config) {
+			deferred.resolve(data.data);
+		}).
+		error(function(data, status, headers, config) {
+			deferred.reject(status);
+		});
+		return deferred.promise;
+
+	};
+
+	//function gets all exercices associated with a given training
+	function getExercices(trainingTilte){
+
+		var deferred = $q.defer();
+
+		var req = {
+			method:'GET',
+			url:'/exercices?trainingTitle=' + trainingTilte,
+			headers: {'Content-Type': 'application/x-www-form-urlencoded'}
 		}
 
 		$http(req).success(function(data, status, headers, config) {
