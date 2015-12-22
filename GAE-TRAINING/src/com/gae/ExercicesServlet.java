@@ -58,6 +58,8 @@ public class ExercicesServlet extends HttpServlet {
 					.put("title", result.getProperty("title").toString());
 			trainingJsonObj.put("description", result
 					.getProperty("description").toString());
+			trainingJsonObj.put("time", result
+					.getProperty("time").toString());
 			trainingJsonObj.put("id", result.getKey().getId());
 			json.add(trainingJsonObj);
 		}
@@ -79,11 +81,12 @@ public class ExercicesServlet extends HttpServlet {
 
 		DatastoreService datastore = DatastoreServiceFactory
 				.getDatastoreService();
-
+		
 		// Create new exercice
 		Entity exo = new Entity("Exercice");
 		exo.setProperty("title", req.get("title"));
 		exo.setProperty("description", req.get("description"));
+		exo.setProperty("time", req.get("time"));
 
 		// Put it in datastore
 		Key exoKey = datastore.put(exo);

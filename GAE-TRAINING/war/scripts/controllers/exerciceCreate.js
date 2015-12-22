@@ -9,9 +9,10 @@ function ExerciceCreateCtrlFnt($scope, $log, comm, SweetAlert, factory) {
 
 	$scope.addExercice = function(exercice){
 
-		var newExo = factory.exoCreation(exercice.title, exercice.description);
+		var newExo = factory.exoCreation(exercice.title, exercice.description, exercice.time);
 		$scope.training.exercices.push(newExo);
 		$scope.show.exoForm = false;
+		console.log(newExo);
 	}
 
 }

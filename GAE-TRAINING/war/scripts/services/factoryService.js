@@ -24,11 +24,12 @@ function factoryFnc(){
 
 	};
 
-	function exoCreation(title,description){
+	function exoCreation(title,description,time){
 
 		var exo = {};
 		exo.description = description;
 		exo.title = title;
+		exo.time = time;
 		return exo;
 
 	};

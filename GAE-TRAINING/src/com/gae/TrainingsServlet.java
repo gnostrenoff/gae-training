@@ -33,21 +33,21 @@ public class TrainingsServlet extends HttpServlet {
 				.getDatastoreService();
 		PreparedQuery pq;
 		JSONArray json = new JSONArray();
+		Query query;
 		
 		if (request.getParameter("search") != null) {
 			Filter propertyFilter = new Query.FilterPredicate("title",
 					FilterOperator.EQUAL, request.getParameter("search"));
-			Query query = new Query("Training").setFilter(propertyFilter);
-			pq = datastore.prepare(query);
+			query = new Query("Training").setFilter(propertyFilter);
 		} else if(request.getParameter("title") != null){
 			Filter propertyFilter = new Query.FilterPredicate("title",
 					FilterOperator.EQUAL, request.getParameter("title"));
-			Query query = new Query("Training").setFilter(propertyFilter);
-			pq = datastore.prepare(query);
+			query = new Query("Training").setFilter(propertyFilter);
 		}else{
-			Query query = new Query("Training");
-			pq = datastore.prepare(query);
+			query = new Query("Training");
 		}
+		
+		pq = datastore.prepare(query);
 
 		for (Entity result : pq.asIterable()) {
 			// create training object
@@ -76,8 +76,6 @@ public class TrainingsServlet extends HttpServlet {
 
 		DatastoreService datastore = DatastoreServiceFactory
 				.getDatastoreService();
-
-		System.out.println(req);
 		
 		// Create new training
 		Entity training = new Entity("Training");
@@ -97,6 +95,7 @@ public class TrainingsServlet extends HttpServlet {
 			Entity exo = new Entity("Exercice", trainingKey);
 			exo.setProperty("title", exoJson.get("title"));
 			exo.setProperty("description", exoJson.get("description"));
+			exo.setProperty("time", exoJson.get("time"));
 			datastore.put(exo);
 		}
 		
@@ -104,6 +103,7 @@ public class TrainingsServlet extends HttpServlet {
 		JSONObject trainingJsonObj = new JSONObject();
 		trainingJsonObj.put("title", req.get("title"));
 		trainingJsonObj.put("description", req.get("description"));
+		trainingJsonObj.put("time", req.get("time"));
 		
 
 		response.setContentType("application/json");
