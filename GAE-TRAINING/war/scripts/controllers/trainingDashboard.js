@@ -15,7 +15,6 @@ function TrainingDashboardCtrlFnt($scope, $log, comm, SweetAlert) {
 			function(data){
 				$scope.trainings = data;
 				$scope.showLoading = false;
-				console.log($scope.training);
 			},
 			function(err){
 				console.error(err);

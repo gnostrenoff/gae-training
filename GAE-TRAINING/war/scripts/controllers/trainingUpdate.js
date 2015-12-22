@@ -9,6 +9,7 @@ function TrainingUpdateCtrlFnt($scope, $window, $log, $location, comm, SweetAler
 
 	$scope.training = {};
 	$scope.training.exercices = [];
+	$scope.exoToShow = undefined;
 
 	var trainingTitle = $location.path().split('/').pop();
 
@@ -20,7 +21,6 @@ function TrainingUpdateCtrlFnt($scope, $window, $log, $location, comm, SweetAler
 			//if training has loaded with success, load exercices associated
 			comm.getExercices($scope.training.title).then(
 				function(data){
-					console.log('loaded exercices!');
 					$scope.training.exercices = data;
 				},
 				function(err){
@@ -32,5 +32,13 @@ function TrainingUpdateCtrlFnt($scope, $window, $log, $location, comm, SweetAler
 			SweetAlert.swal("Ooouups", "Something went wrong");
 		}
 	);
+
+	//function shows details for selected exercice if hidden, hides it otherwise
+	$scope.showExo = function(exo){
+		if($scope.exoToShow != exo)
+			$scope.exoToShow = exo;
+		else
+			$scope.exoToShow = undefined;
+	}
 
 }

@@ -7,10 +7,10 @@
 			</div>
 		</div>
 		<div class="form-group">
-			<label class="col-md-2 control-label">Exercices</label>
+			<label class="col-md-2 control-label">Exercices (click for details)</label>
 			<div class="col-md-10">
 				<button ng-repeat="exo in training.exercices" ng-show="training.exercices"
-					class="btn btn-sm btn-success btn-raised">{{exo.title}}</button>
+					class="btn btn-sm btn-success btn-raised" ng-click="showExo(exo)">{{exo.title}}</button>
 				<span ng-hide="training.exercices"> <em>No exercices</em>
 				</span>
 			</div>
@@ -20,4 +20,4 @@
 	</form>
 	</div>
 </div>
-<div ng-include="'views/exercice.html'" ng-controller="ExerciceCreateCtrl" ng-show="show.exoForm"></div>
+<div ng-include="'views/exerciceDetails.html'" ng-controller="ExerciceDetailsCtrl" ng-show="exoToShow != undefined"></div>
