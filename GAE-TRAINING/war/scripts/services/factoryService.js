@@ -14,12 +14,13 @@ function factoryFnc(){
 		mapToArray: mapToArray
 	};
 
-	function trainingCreation(title,description, exerciceArray){
+	function trainingCreation(title,description, exerciceArray, time){
 
 		var training = {};
 		training.title = title;
 		training.description = description;
 		training.exercices = exerciceArray;
+		training.time = time;
 		return training;
 
 	};

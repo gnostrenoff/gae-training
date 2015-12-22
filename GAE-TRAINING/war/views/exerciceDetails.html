@@ -2,13 +2,18 @@
 	<div class="panel-heading">{{exoToShow.title}}</div>
 	<div class="panel-body">
 		<div>
-			{{exoToShow.description}}
-		</div>
-		<div>
 			<div class="btn btn-block btn-lg btn-primary"><span class="glyphicon glyphicon-time"></span> {{exoToShow.time}} min</div>
 		</div>
-		<button class="btn btn-sm btn-warning btn-raised"><span class="glyphicon glyphicon-share-alt"></span>Lets go!</button>
-		<button class="btn btn-sm btn-success btn-raised">validate <span class="glyphicon glyphicon-check"></span></button>
+		<div>
+			{{exoToShow.description}}
+		</div>
+		<button class="btn btn-lg btn-warning btn-raised" ng-click="startTimer()" ng-disabled="timerRunning"><span class="glyphicon glyphicon-play"></span></button>
+		<button class="btn btn-lg btn-warning btn-raised" ng-click="stopTimer()" ng-disabled="!timerRunning"><span class="glyphicon glyphicon-pause"></span></button>
+		<button class="btn btn-lg btn-warning btn-raised" ng-click="clearTimer()"><span class="glyphicon glyphicon-rotate-left"></span></button>
+		<div class="pull-right">
+			<h2><timer autostart="false" countdown="minutesToSeconds(exoToShow.time)" interval="1000" ng-show="isLaunched">{{minutes}} : {{seconds}}</timer></h2>
+		</div>
+		<button class="btn btn-lg btn-success btn-raised" ng-click="validate(exoToShow)">validate <span class="glyphicon glyphicon-check"></span></button>
 		</div>
 	</form>
 	</div>

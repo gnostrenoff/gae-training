@@ -1,23 +1,37 @@
 <div class="panel panel-info">
-	<div class="panel-heading">{{training.title}}</div>
+	<div class="panel-heading"><h1><strong>{{training.title}}</strong></h1></div>
+	<div class="btn btn-block btn-lg btn-primary"><h1><span class="glyphicon glyphicon-time"></span> {{training.time}} min</h1></div>
 	<div class="panel-body">
-		<div>
 			<div class="col-md-10">
 				{{training.description}}
 			</div>
-		</div>
-		<div class="form-group">
-			<label class="col-md-2 control-label">Exercices (click for details)</label>
 			<div class="col-md-10">
-				<button ng-repeat="exo in training.exercices" ng-show="training.exercices"
-					class="btn btn-sm btn-success btn-raised" ng-click="showExo(exo)">{{exo.title}}</button>
-				<span ng-hide="training.exercices"> <em>No exercices</em>
-				</span>
+				<p ng-show="training.exercices"> Exercices : </p>
+				<p ng-show="!training.exercices"> No exercices available for this training plan ... : </p>
 			</div>
-			<div class="col-sm-12">
-		</div>
-		</div>
-	</form>
 	</div>
+
+	<ul class="list-group">
+	<li class="list-group-item" ng-controller="ExerciceDetailsCtrl" ng-repeat="exo in training.exercices" ng-show="training.exercices">
+	<div class="panel panel-primary">
+		<div class="panel-heading">{{exo.title}}</div>
+		<div class="panel-body">
+			<div>
+				<div class="btn btn-block btn-lg btn-primary"><span class="glyphicon glyphicon-time"></span> {{exo.time}} min</div>
+			</div>
+			<div>
+				{{exo.description}}
+			</div>
+			<button class="btn btn-lg btn-warning btn-raised" ng-click="startTimer()" ng-disabled="timerRunning"><span class="glyphicon glyphicon-play"></span></button>
+			<button class="btn btn-lg btn-warning btn-raised" ng-click="stopTimer()" ng-disabled="!timerRunning"><span class="glyphicon glyphicon-pause"></span></button>
+			<button class="btn btn-lg btn-warning btn-raised" ng-click="clearTimer()"><span class="glyphicon glyphicon-rotate-left"></span></button>
+			<div class="pull-right">
+				<h2><timer autostart="false" countdown="minutesToSeconds(exo.time)" interval="1000" ng-show="isLaunched">{{minutes}} : {{seconds}}</timer></h2>
+			</div>
+			<button class="btn btn-lg btn-success btn-raised" ng-click="validate(exoToShow)">validate <span class="glyphicon glyphicon-check"></span></button>
+			</div>
+	</div>
+	</li>
+	</ul>
+
 </div>
-<div ng-include="'views/exerciceDetails.html'" ng-controller="ExerciceDetailsCtrl" ng-show="exoToShow != undefined"></div>

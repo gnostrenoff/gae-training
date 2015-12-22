@@ -9,6 +9,7 @@ function TrainingUpdateCtrlFnt($scope, $window, $log, $location, comm, SweetAler
 
 	$scope.training = {};
 	$scope.training.exercices = [];
+	$scope.training.totalTime = 0;
 	$scope.exoToShow = undefined;
 
 	var trainingTitle = $location.path().split('/').pop();

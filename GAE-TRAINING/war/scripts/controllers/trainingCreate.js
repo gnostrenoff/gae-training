@@ -11,9 +11,11 @@ function TrainingCreateCtrlFnt($scope, $log, comm, SweetAlert, factory) {
 	$scope.show.exoForm;
 	$scope.training = {};
 	$scope.training.exercices = [];
+	$scope.training.time = 0;
 
 	$scope.addTraining = function(){
-		var newTraining = factory.trainingCreation($scope.training.title, $scope.training.description, $scope.training.exercices);
+
+		var newTraining = factory.trainingCreation($scope.training.title, $scope.training.description, $scope.training.exercices, $scope.training.time);
 
 		//post the training
 		comm.postTraining(newTraining).then(

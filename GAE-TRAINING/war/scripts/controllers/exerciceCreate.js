@@ -11,8 +11,8 @@ function ExerciceCreateCtrlFnt($scope, $log, comm, SweetAlert, factory) {
 
 		var newExo = factory.exoCreation(exercice.title, exercice.description, exercice.time);
 		$scope.training.exercices.push(newExo);
+		$scope.training.time += newExo.time;
 		$scope.show.exoForm = false;
-		console.log(newExo);
 	}
 
 }

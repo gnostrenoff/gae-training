@@ -56,6 +56,8 @@ public class TrainingsServlet extends HttpServlet {
 					.put("title", result.getProperty("title").toString());
 			trainingJsonObj.put("description", result
 					.getProperty("description").toString());
+			trainingJsonObj.put("time", result
+					.getProperty("time").toString());
 			trainingJsonObj.put("id", result.getKey().getId());
 			json.add(trainingJsonObj);
 		}
@@ -81,6 +83,7 @@ public class TrainingsServlet extends HttpServlet {
 		Entity training = new Entity("Training");
 		training.setProperty("title", req.get("title"));
 		training.setProperty("description", req.get("description"));
+		training.setProperty("time", req.get("time"));
 
 		//put it in datastore and get its key for child exercices storing
 		Key trainingKey = datastore.put(training);

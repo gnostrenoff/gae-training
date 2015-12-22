@@ -5,7 +5,8 @@ angular
     'ngRoute',
     'commService',
     'oitozero.ngSweetAlert',
-    'factoryServices'
+    'factoryServices',
+    'timer'
   ])
   .config(function ($routeProvider) {
     $routeProvider
