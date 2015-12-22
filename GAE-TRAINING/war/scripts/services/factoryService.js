@@ -11,6 +11,7 @@ function factoryFnc(){
 	var factory = {
 		trainingCreation: trainingCreation,
 		exoCreation: exoCreation,
+		scoreCreation: scoreCreation,
 		mapToArray: mapToArray
 	};
 
@@ -32,6 +33,18 @@ function factoryFnc(){
 		exo.title = title;
 		exo.time = time;
 		return exo;
+
+	};
+
+	function scoreCreation(date, userId,trainingTitle, exoTitle, result){
+
+		var score = {};
+		score.date = date;
+		score.userId = userId;
+		score.trainingTitle = trainingTitle;
+		score.exoTitle = exoTitle;
+		score.result = result;
+		return score;
 
 	};
 

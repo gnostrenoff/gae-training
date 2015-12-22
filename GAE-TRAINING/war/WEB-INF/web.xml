@@ -43,6 +43,15 @@ http://java.sun.com/xml/ns/javaee/web-app_2_5.xsd"
 		<url-pattern>/exercices</url-pattern>
 	</servlet-mapping>
 
+	<servlet>
+		<servlet-name>Scores</servlet-name>
+		<servlet-class>com.gae.ScoresServlet</servlet-class>
+	</servlet>
+
+	<servlet-mapping>
+		<servlet-name>Scores</servlet-name>
+		<url-pattern>/scores</url-pattern>
+	</servlet-mapping>
 
 	<welcome-file-list>
 		<welcome-file>index.html</welcome-file>

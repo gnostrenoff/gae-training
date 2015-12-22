@@ -9,6 +9,7 @@ function commFnc($q, $http){
 	var comm = {
 		postTraining: postTraining,
 		postExercice: postExercice,
+		postScore: postScore,
 		getTrainings: getTrainings,
 		getExercices: getExercices
 	};
@@ -46,6 +47,26 @@ function commFnc($q, $http){
 
 		$http(req).success(function(data, status, headers, config) {
 			console.log(data)
+			deferred.resolve(data);
+		}).
+		error(function(data, status, headers, config) {
+			deferred.reject(status);
+		});
+		return deferred.promise;
+	};
+
+	//function post the score for the done exercices
+	function postScore(score){
+		var deferred = $q.defer();
+
+		var req ={
+			method:'POST',
+			url:'/scores',
+			headers: {'Content-Type': 'application/x-www-form-urlencoded'},
+			data:score
+		}
+
+		$http(req).success(function(data, status, headers, config) {
 			deferred.resolve(data);
 		}).
 		error(function(data, status, headers, config) {

@@ -3,9 +3,9 @@
 angular.module('gaeTrainingApp').controller('ExerciceDetailsCtrl',
 		ExerciceDetailsCtrlFnt);
 
-ExerciceDetailsCtrlFnt.$inject = [ '$scope', '$log', 'comm', 'SweetAlert', 'factory'];
+ExerciceDetailsCtrlFnt.$inject = [ '$scope', '$log', '$filter', 'comm', 'SweetAlert', 'factory'];
 
-function ExerciceDetailsCtrlFnt($scope, $log, comm, SweetAlert, factory) {
+function ExerciceDetailsCtrlFnt($scope, $log, $filter, comm, SweetAlert, factory) {
 
 	$scope.isLaunched = false;
 	$scope.timerValue = 0;
@@ -52,12 +52,25 @@ function ExerciceDetailsCtrlFnt($scope, $log, comm, SweetAlert, factory) {
 		//get score in seconds
 		$scope.score = $scope.minutesToSeconds($scope.exo.time) - $scope.timerValue;
 
-		//display success message
-		SweetAlert.swal("Good job!", "You've completed the exercice \'" + $scope.exo.title +"\' in only " + parseInt($scope.score/60) + " minutes and " + $scope.score%60 + " seconds !", "success");
-		$scope.clearTimer();
+		//stop timer
 		$scope.stopTimer();
 
 		//send result to server
-		//todo
+		var today = $filter('date')(new Date(), 'MM/dd/yyyy - hh:mm');
+		var score = factory.scoreCreation(today, 'randomUser', $scope.training.title, $scope.exo.title, 'success');
+
+		comm.postScore(score).then(
+			function(data){
+				//display success message
+				SweetAlert.swal("Good job!", "You've completed the exercice \'" + $scope.exo.title +"\' in only " + parseInt($scope.score/60) + " minutes and " + $scope.score%60 + " seconds ! Your score has been sent to the server.", "success");
+				$scope.clearTimer();
+			},
+			function(err){
+				SweetAlert.swal("Good job!", "You've completed the exercice \'" + $scope.exo.title +"\' in only " + parseInt($scope.score/60) + " minutes and " + $scope.score%60 + " seconds ! Your score has not been sent to the server.", "success");
+				$scope.clearTimer();
+				$scope.stopTimer();
+			}
+		);
+
   };
 }
