@@ -27,6 +27,7 @@ function ExerciceDetailsCtrlFnt($scope, $log, $filter, comm, SweetAlert, factory
 
 	$scope.clearTimer = function (){
       $scope.$broadcast('timer-reset');
+			$scope.timerRunning = false;
   };
 
 	//just to keep the current timer value
