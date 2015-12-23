@@ -35,17 +35,7 @@ public class TrainingsServlet extends HttpServlet {
 		JSONArray json = new JSONArray();
 		Query query;
 		
-		if (request.getParameter("search") != null) {
-			Filter propertyFilter = new Query.FilterPredicate("title",
-					FilterOperator.EQUAL, request.getParameter("search"));
-			query = new Query("Training").setFilter(propertyFilter);
-		} else if(request.getParameter("title") != null){
-			Filter propertyFilter = new Query.FilterPredicate("title",
-					FilterOperator.EQUAL, request.getParameter("title"));
-			query = new Query("Training").setFilter(propertyFilter);
-		}else{
-			query = new Query("Training");
-		}
+		query = new Query("Training");
 		
 		pq = datastore.prepare(query);
 
@@ -99,6 +89,7 @@ public class TrainingsServlet extends HttpServlet {
 			exo.setProperty("title", exoJson.get("title"));
 			exo.setProperty("description", exoJson.get("description"));
 			exo.setProperty("time", exoJson.get("time"));
+			exo.setProperty("trainingParent", req.get("title"));
 			datastore.put(exo);
 		}
 		

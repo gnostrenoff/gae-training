@@ -11,7 +11,8 @@ function commFnc($q, $http){
 		postExercice: postExercice,
 		postScore: postScore,
 		getTrainings: getTrainings,
-		getExercices: getExercices
+		getExercices: getExercices,
+		getSearchResults: getSearchResults
 	};
 
 	//function post the new created training
@@ -76,28 +77,14 @@ function commFnc($q, $http){
 	};
 
 	//function post the get all trainings
-	function getTrainings(trainingTilte, search){
+	function getTrainings(){
 
 		var deferred = $q.defer();
 
-		if(search) {
-			var req = {
-				method:'GET',
-				url:'/trainings?search=' + search,
-				headers: {'Content-Type': 'application/x-www-form-urlencoded'}
-			}
-		} else if (trainingTilte) {
-			var req = {
-				method:'GET',
-				url:'/trainings?title=' + trainingTilte,
-				headers: {'Content-Type': 'application/x-www-form-urlencoded'}
-			}
-		} else {
-			var req = {
-				method:'GET',
-				url:'/trainings',
-				headers: {'Content-Type': 'application/x-www-form-urlencoded'}
-			}
+		var req = {
+			method:'GET',
+			url:'/trainings',
+			headers: {'Content-Type': 'application/x-www-form-urlencoded'}
 		}
 
 		$http(req).success(function(data, status, headers, config) {
@@ -111,13 +98,34 @@ function commFnc($q, $http){
 	};
 
 	//function gets all exercices associated with a given training
-	function getExercices(trainingTilte){
+	function getExercices(trainingTilte, exoTitle){
 
 		var deferred = $q.defer();
 
 		var req = {
 			method:'GET',
 			url:'/exercices?trainingTitle=' + trainingTilte,
+			headers: {'Content-Type': 'application/x-www-form-urlencoded'}
+		}
+
+		$http(req).success(function(data, status, headers, config) {
+			deferred.resolve(data.data);
+		}).
+		error(function(data, status, headers, config) {
+			deferred.reject(status);
+		});
+		return deferred.promise;
+
+	};
+
+	//function gets all exercices associated with a given training
+	function getSearchResults(searchParam){
+
+		var deferred = $q.defer();
+
+		var req = {
+			method:'GET',
+			url:'/search?search=' + searchParam,
 			headers: {'Content-Type': 'application/x-www-form-urlencoded'}
 		}
 

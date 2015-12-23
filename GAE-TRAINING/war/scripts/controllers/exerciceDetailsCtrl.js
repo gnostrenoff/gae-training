@@ -3,9 +3,9 @@
 angular.module('gaeTrainingApp').controller('ExerciceDetailsCtrl',
 		ExerciceDetailsCtrlFnt);
 
-ExerciceDetailsCtrlFnt.$inject = [ '$scope', '$log', '$filter', 'comm', 'SweetAlert', 'factory'];
+ExerciceDetailsCtrlFnt.$inject = [ '$scope', '$log', '$filter', 'comm', 'SweetAlert', 'factory', '$location'];
 
-function ExerciceDetailsCtrlFnt($scope, $log, $filter, comm, SweetAlert, factory) {
+function ExerciceDetailsCtrlFnt($scope, $log, $filter, comm, SweetAlert, factory, $location) {
 
 	$scope.isLaunched = false;
 	$scope.timerValue = 0;

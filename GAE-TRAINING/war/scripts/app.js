@@ -31,6 +31,10 @@ angular
         templateUrl: 'views/exercice.html',
         controller: 'ExerciceCreateCtrl'
       })
+      .when('/exercices/:exerciceId', {
+        templateUrl: 'views/exerciceDetails.html',
+        controller: 'ExerciceDetailsCtrl'
+      })
       .when('/login', {
         templateUrl: 'views/login.html',
         controller: 'LoginCtrl'

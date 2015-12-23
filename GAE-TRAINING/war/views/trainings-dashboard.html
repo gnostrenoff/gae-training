@@ -26,12 +26,25 @@
 <div ng-hide="showLoading">
 	<em class="text-muted" ng-hide="trainings.length > 0">Nothing found...</em>
 	<a ng-repeat="training in trainings" ng-href="#/trainings/{{training.title}}">
-		<div class="panel panel-success">
+		<div class="panel panel-info">
 			<div class="panel-heading">
-				<div class="wrap">{{training.title}} - {{training.id}}</div>
+				<div class="wrap"><strong>{{training.title}}</strong> <em class="wrap pull-right">TRAINING PLAN</em></div>
 			</div>
 			<div class="panel-body">
 				<div class="wrap text-muted">{{training.description}}</div>
+			</div>
+		</div>
+	</a>
+</div>
+<div ng-hide="showLoading">
+	<a ng-repeat="exo in exercices" ng-href="#/trainings/{{exo.trainingParent}}">
+		<div class="panel panel-success">
+			<div class="panel-heading">
+				<div class="wrap"><strong>{{exo.title}}</strong><em class="wrap pull-right">EXERCICE</em></div>
+			</div>
+			<div class="panel-body">
+				(from training plan '{{exo.trainingParent}}')
+				<div class="wrap text-muted">{{exo.description}}</div>
 			</div>
 		</div>
 	</a>
