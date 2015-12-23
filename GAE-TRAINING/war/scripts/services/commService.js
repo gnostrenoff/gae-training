@@ -78,14 +78,23 @@ function commFnc($q, $http){
 	};
 
 	//function post the get all trainings
-	function getTrainings(){
+	function getTrainings(trainingTitle){
 
 		var deferred = $q.defer();
 
-		var req = {
-			method:'GET',
-			url:'/trainings',
-			headers: {'Content-Type': 'application/x-www-form-urlencoded'}
+		if(trainingTitle != null){
+			var req = {
+				method:'GET',
+				url:'/trainings?trainingTitle=' + trainingTitle,
+				headers: {'Content-Type': 'application/x-www-form-urlencoded'}
+			}
+		}
+		else {
+			var req = {
+				method:'GET',
+				url:'/trainings',
+				headers: {'Content-Type': 'application/x-www-form-urlencoded'}
+			}
 		}
 
 		$http(req).success(function(data, status, headers, config) {
@@ -99,7 +108,7 @@ function commFnc($q, $http){
 	};
 
 	//function gets all exercices associated with a given training
-	function getExercices(trainingTilte, exoTitle){
+	function getExercices(trainingTilte){
 
 		var deferred = $q.defer();
 

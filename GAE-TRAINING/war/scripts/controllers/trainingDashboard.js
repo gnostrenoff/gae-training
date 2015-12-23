@@ -13,7 +13,7 @@ function TrainingDashboardCtrlFnt($scope, $log, comm, SweetAlert) {
 	$scope.onSearch = function() {
 		$scope.showLoading = true;
 
-		if($scope.search != ""){
+		if($scope.search != undefined){
 			comm.getSearchResults($scope.search).then(
 				function(data){
 					//parse response to get trainings and exercices separately
@@ -34,7 +34,7 @@ function TrainingDashboardCtrlFnt($scope, $log, comm, SweetAlert) {
 
 	//just to prevent duplicated code
 	function loadTrainings(){
-		$scope.trainings = comm.getTrainings().then(
+		$scope.trainings = comm.getTrainings(null).then(
 			function(data){
 				$scope.trainings = data;
 				$scope.showLoading = false;

@@ -33,9 +33,14 @@ public class TrainingsServlet extends HttpServlet {
 				.getDatastoreService();
 		PreparedQuery pq;
 		JSONArray json = new JSONArray();
-		Query query;
+		Query query = new Query("Training");
 		
-		query = new Query("Training");
+		if(request.getParameter("trainingTitle") != null){
+			//create filter
+			Filter propertyFilter = new Query.FilterPredicate("title",
+					FilterOperator.EQUAL, request.getParameter("trainingTitle"));
+			query.setFilter(propertyFilter);
+		}	
 		
 		pq = datastore.prepare(query);
 

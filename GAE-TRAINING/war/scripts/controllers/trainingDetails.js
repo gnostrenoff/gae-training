@@ -14,7 +14,7 @@ function TrainingUpdateCtrlFnt($scope, $window, $log, $location, comm, SweetAler
 
 	var trainingTitle = $location.path().split('/').pop();
 
-	comm.getTrainings(trainingTitle, null).then(
+	comm.getTrainings(trainingTitle).then(
 		function(data){
 			//we assume only one results is possible
 			$scope.training = data[0];
