@@ -28,6 +28,41 @@ public class ScoresServlet extends HttpServlet {
 
 	public void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws IOException {
+		
+		DatastoreService datastore = DatastoreServiceFactory.getDatastoreService();
+		PreparedQuery pq;
+		JSONArray json = new JSONArray();
+		Query query;
+		
+		query = new Query("Score");
+		
+		pq = datastore.prepare(query);
+
+		for (Entity result : pq.asIterable()) {
+			// create training object
+			JSONObject trainingJsonObj = new JSONObject();
+			trainingJsonObj
+					.put("date", result.getProperty("date").toString());
+			trainingJsonObj.put("exoTitle", result
+					.getProperty("exoTitle").toString());
+			trainingJsonObj.put("result", result
+					.getProperty("result").toString());
+			trainingJsonObj.put("time", result
+					.getProperty("time").toString());
+			trainingJsonObj.put("trainingTitle", result
+					.getProperty("trainingTitle").toString());
+			trainingJsonObj.put("userId", result
+					.getProperty("userId").toString());
+			trainingJsonObj.put("id", result.getKey().getId());
+			json.add(trainingJsonObj);
+		}
+		JSONObject responseJson = new JSONObject();
+		responseJson.put("data",json);
+		response.setContentType("application/json");
+		response.getOutputStream().print(responseJson.toJSONString());
+		response.getOutputStream().flush();
+
+		
 	}
 
 	@Override

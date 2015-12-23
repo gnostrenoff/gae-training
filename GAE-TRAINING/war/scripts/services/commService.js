@@ -12,7 +12,8 @@ function commFnc($q, $http){
 		postScore: postScore,
 		getTrainings: getTrainings,
 		getExercices: getExercices,
-		getSearchResults: getSearchResults
+		getSearchResults: getSearchResults,
+		getScores: getScores
 	};
 
 	//function post the new created training
@@ -126,6 +127,27 @@ function commFnc($q, $http){
 		var req = {
 			method:'GET',
 			url:'/search?search=' + searchParam,
+			headers: {'Content-Type': 'application/x-www-form-urlencoded'}
+		}
+
+		$http(req).success(function(data, status, headers, config) {
+			deferred.resolve(data.data);
+		}).
+		error(function(data, status, headers, config) {
+			deferred.reject(status);
+		});
+		return deferred.promise;
+
+	};
+
+	//function gets all the user's scores
+	function getScores(){
+
+		var deferred = $q.defer();
+
+		var req = {
+			method:'GET',
+			url:'/scores',
 			headers: {'Content-Type': 'application/x-www-form-urlencoded'}
 		}
 

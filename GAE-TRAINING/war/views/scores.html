@@ -1,0 +1,25 @@
+<section class="panel panel-danger">
+	<header class="panel-heading">
+		<h3>Your personnal scores</h3>
+	</header>
+	<table class="table">
+		<thead>
+			<tr>
+				<th>date</th>
+				<th>exercice</th>
+				<th>training</th>
+        <th>completed in</th>
+				<th>result</th>
+			</tr>
+		</thead>
+		<tbody>
+			<tr ng-repeat="score in scores">
+				<td>{{score.date}}</td>
+        <td>{{score.exoTitle}}</td>
+        <td>{{score.trainingTitle}}</td>
+        <td>{{score.time}}</td>
+        <td>{{score.result}}</td>
+			</tr>
+		</tbody>
+	</table>
+</section>
