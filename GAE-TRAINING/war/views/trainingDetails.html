@@ -14,7 +14,7 @@
 	<ul class="list-group">
 	<li class="list-group-item" ng-controller="ExerciceDetailsCtrl" ng-repeat="exo in training.exercices" ng-show="training.exercices">
 	<div class="panel panel-primary">
-		<div class="panel-heading">{{exo.title}}	<span ng-show="exo.isValidated == true"class="glyphicon glyphicon-ok"></span></div>
+		<div class="panel-heading">{{exo.title}}	<span ng-show="exo.isValidated == true"class="glyphicon glyphicon-ok-circle"></span></div>
 		<div class="panel-body">
 			<div>
 				<div class="btn btn-block btn-lg btn-primary"><span class="glyphicon glyphicon-time"></span> {{exo.time}} min</div>
@@ -24,7 +24,7 @@
 			</div>
 			<button class="btn btn-lg btn-warning btn-raised" ng-click="startTimer()" ng-disabled="timerRunning"><span class="glyphicon glyphicon-play"></span></button>
 			<button class="btn btn-lg btn-warning btn-raised" ng-click="stopTimer()" ng-disabled="!timerRunning"><span class="glyphicon glyphicon-pause"></span></button>
-			<button class="btn btn-lg btn-warning btn-raised" ng-click="clearTimer()"><span class="glyphicon glyphicon-rotate-left"></span></button>
+			<button class="btn btn-lg btn-warning btn-raised" ng-click="clearTimer()"><span>reset</span></button>
 			<div class="pull-right">
 				<h2><timer autostart="false" countdown="minutesToSeconds(exo.time)" interval="1000" ng-show="isLaunched">{{minutes}} : {{seconds}}</timer></h2>
 			</div>
