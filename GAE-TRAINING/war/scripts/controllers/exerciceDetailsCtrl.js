@@ -10,6 +10,7 @@ function ExerciceDetailsCtrlFnt($scope, $log, $filter, comm, SweetAlert, factory
 	$scope.isLaunched = false;
 	$scope.timerValue = 0;
 	$scope.score = 0;
+	$scope.exo.isValidated = false;
 
 	$scope.$broadcast('timer-clear');
 
@@ -57,16 +58,18 @@ function ExerciceDetailsCtrlFnt($scope, $log, $filter, comm, SweetAlert, factory
 
 		//send result to server
 		var today = $filter('date')(new Date(), 'MM/dd/yyyy - hh:mm');
-		var score = factory.scoreCreation(today, 'randomUser', $scope.training.title, $scope.exo.title, 'success');
+		var timeString = parseInt($scope.score/60) + "\' " + $scope.score%60 + "\"";
+		var score = factory.scoreCreation(today, 'randomUser', $scope.training.title, $scope.exo.title, 'success', timeString);
 
 		comm.postScore(score).then(
 			function(data){
-				//display success message
-				SweetAlert.swal("Good job!", "You've completed the exercice \'" + $scope.exo.title +"\' in only " + parseInt($scope.score/60) + " minutes and " + $scope.score%60 + " seconds ! Your score has been sent to the server.", "success");
+				//display success message and set exo as validated
+				SweetAlert.swal("Good job!", "You've completed the exercice \'" + $scope.exo.title +"\' (time : " + timeString + ") ! Your score has been sent to the server.", "success");
 				$scope.clearTimer();
+				$scope.exo.isValidated = true;
 			},
 			function(err){
-				SweetAlert.swal("Good job!", "You've completed the exercice \'" + $scope.exo.title +"\' in only " + parseInt($scope.score/60) + " minutes and " + $scope.score%60 + " seconds ! Your score has not been sent to the server.", "success");
+				SweetAlert.swal("Good job!", "You've completed the exercice \'" + $scope.exo.title +"\' (time : " + timeString + ") ! Your score has not been sent to the server.", "success");
 				$scope.clearTimer();
 				$scope.stopTimer();
 			}

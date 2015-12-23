@@ -36,7 +36,7 @@ function factoryFnc(){
 
 	};
 
-	function scoreCreation(date, userId,trainingTitle, exoTitle, result){
+	function scoreCreation(date, userId,trainingTitle, exoTitle, result, time){
 
 		var score = {};
 		score.date = date;
@@ -44,6 +44,7 @@ function factoryFnc(){
 		score.trainingTitle = trainingTitle;
 		score.exoTitle = exoTitle;
 		score.result = result;
+		score.time = time;
 		return score;
 
 	};

@@ -14,7 +14,7 @@
 	<ul class="list-group">
 	<li class="list-group-item" ng-controller="ExerciceDetailsCtrl" ng-repeat="exo in training.exercices" ng-show="training.exercices">
 	<div class="panel panel-primary">
-		<div class="panel-heading">{{exo.title}}</div>
+		<div class="panel-heading">{{exo.title}}	<span ng-show="exo.isValidated == true"class="glyphicon glyphicon-ok"></span></div>
 		<div class="panel-body">
 			<div>
 				<div class="btn btn-block btn-lg btn-primary"><span class="glyphicon glyphicon-time"></span> {{exo.time}} min</div>
