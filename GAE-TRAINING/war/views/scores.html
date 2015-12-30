@@ -2,7 +2,7 @@
 	<header class="panel-heading">
 		<h3>Your personnal scores</h3>
 	</header>
-	<table class="table">
+	<table class="table" ng-show="scores.length">
 		<thead>
 			<tr>
 				<th>date</th>
@@ -14,12 +14,15 @@
 		</thead>
 		<tbody>
 			<tr ng-repeat="score in scores">
-				<td>{{score.date}}</td>
-        <td>{{score.exoTitle}}</td>
-        <td>{{score.trainingTitle}}</td>
-        <td>{{score.time}}</td>
-        <td>{{score.result}}</td>
+        <div>
+  				<td>{{score.date}}</td>
+          <td>{{score.exoTitle}}</td>
+          <td>{{score.trainingTitle}}</td>
+          <td>{{score.time}}</td>
+          <td>{{score.result}}</td>
+        </div>
 			</tr>
 		</tbody>
 	</table>
+  <div class="panel-body" ng-hide="scores.length"> Your don't have any registered score yet.</div>
 </section>
