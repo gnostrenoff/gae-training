@@ -45,3 +45,17 @@
 		</div>
 	</a>
 </div>
+
+<!-- NEWS -->
+<div class="panel panel-primary" ng-show="news.length">
+	<div class="panel-heading">News from bbc sport</div>
+	<div class="panel-body">
+			<div class="list-group">
+			  <div class="list-group-item active" ng-repeat="item in news">
+			    <h4 class="list-group-item-text">{{item.title}}</h4>
+			    <p class="list-group-item-text">{{item.description}}</p>
+					<p><a href="{{item.link}}" role="button">Learn more</a></p>
+			  </div>
+			</div>
+	</div>
+</div>

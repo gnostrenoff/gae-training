@@ -1,6 +1,7 @@
 package com.gae;
 
 import java.io.IOException;
+import java.net.URL;
 
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
@@ -9,6 +10,12 @@ import javax.servlet.http.HttpServletResponse;
 
 import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
+import org.xml.sax.InputSource;
+import org.xml.sax.SAXException;
+import org.xml.sax.XMLReader;
+import org.xml.sax.helpers.XMLReaderFactory;
+
+import util.SaxHandler;
 
 import com.google.appengine.api.datastore.DatastoreService;
 import com.google.appengine.api.datastore.DatastoreServiceFactory;
@@ -20,7 +27,7 @@ import com.google.appengine.api.datastore.Query.FilterOperator;
 
 @SuppressWarnings("serial")
 public class SearchServlet extends HttpServlet {
-
+	
 	public void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws IOException {
 		
@@ -47,17 +54,38 @@ public class SearchServlet extends HttpServlet {
 		pq = datastore.prepare(query);		
 		getMatchingEntity(pq, jsonExos);
 		json.add(jsonExos);
+		
+		//get news using RSS
+		SaxHandler handler = new SaxHandler();
+		URL url = new URL("http://feeds.bbci.co.uk/sport/0/rss.xml");
+		
+		try {
+			XMLReader myReader = XMLReaderFactory.createXMLReader();
+			myReader.setContentHandler(handler);	
+			myReader.parse(new InputSource(url.openStream()));
 
-		//send back an array containing 2 arrays (trainings and exos)
+		} catch (SAXException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+		
+		//keep only 3 first news
+		JSONArray itemsListJson = handler.getItemsList();
+		while(itemsListJson.size() > 3){
+			itemsListJson.remove(itemsListJson.size() - 1);
+		}
+
+		//add news to response
+		json.add(itemsListJson);
+		
+		//send back an array containing 3 arrays (trainings, exos, and news)
 		JSONObject responseJson = new JSONObject();
 		responseJson.put("data",json);
-		
-		System.out.println(responseJson.toJSONString());
 		
 		response.setContentType("application/json");
 		response.getOutputStream().print(responseJson.toJSONString());
 		response.getOutputStream().flush();
-
 	}
 
 	@Override

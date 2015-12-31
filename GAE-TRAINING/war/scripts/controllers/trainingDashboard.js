@@ -9,6 +9,7 @@ function TrainingDashboardCtrlFnt($scope, $log, comm, SweetAlert) {
 
 	$scope.trainings = {};
 	$scope.exercices = {};
+	$scope.news = {};
 
 	$scope.onSearch = function() {
 		$scope.showLoading = true;
@@ -19,6 +20,8 @@ function TrainingDashboardCtrlFnt($scope, $log, comm, SweetAlert) {
 					//parse response to get trainings and exercices separately
 					$scope.trainings = data[0];
 					$scope.exercices = data[1];
+					$scope.news = data[2];
+					console.log($scope.news);
 					$scope.showLoading = false;
 				},
 				function(err){
